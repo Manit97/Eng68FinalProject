@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/fragments :: layout(~{::head}, ~{::nav}, ~{::main})}">
+<head th:replace="~{fragments/head :: headFragment(title='Index Page')}">
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>Home</title>
+    <link rel ="stylesheet" href="webjars/bootstrap/4.5.2/css/bootstrap.css"/>
 </head>
 <body>
+<nav th:replace="~{fragments/generalNavigation}">Navigation</nav>
+<main>
 
+    <h1>Welcome to index page!</h1>
+
+</main>
 </body>
 </html>

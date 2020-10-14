@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(head,nav,main)">
+<head th:replace="${head}">
+    <meta charset="UTF-8">
+    <title>Master</title>
+    <link rel ="stylesheet" th:href="@{/css/myStyle.css}"/>
+    <link rel ="stylesheet" href="webjars/bootstrap/4.5.2/css/bootstrap.css"/>
+</head>
+<body>
+<nav th:replace="${nav}">Default Navigation</nav>
+<main th:replace="${main}">
+    <p>Default page for UOS</p>
+</main>
+<br/>
+<footer th:replace="fragments/footer :: footerFragment">
+    Default footer
+
+</footer>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

@@ -4,6 +4,9 @@
 # BlueJ files
 *.ctxt
 
+# MarkDown files
+HELP.md
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -29,6 +32,9 @@ hs_err_pid*
 ## Maven
 ##############################
 target/
+mvnw
+mvnw.cmd
+.mvn/**
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

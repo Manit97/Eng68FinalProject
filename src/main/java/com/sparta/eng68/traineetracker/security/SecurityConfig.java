@@ -1,5 +1,6 @@
 package com.sparta.eng68.traineetracker.security;
 
+import com.sparta.eng68.traineetracker.utilities.CSVLoginReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -15,50 +17,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("michaelcamacho@hotmail.com").password(passwordEncoder().encode("mc")).roles("USER")
-                .and()
-                .withUser("tasniakhan@gmail.com").password(passwordEncoder().encode("tk")).roles("USER")
-                .and()
-                .withUser("davidtrieu@gmail.com").password(passwordEncoder().encode("dt")).roles("USER")
-                .and()
-                .withUser("billgates@microsoft.com").password(passwordEncoder().encode("bg")).roles("ADMIN")
-                .and()
-                .withUser("jeffbezos@amazon.com").password(passwordEncoder().encode("jb")).roles("ADMIN")
-                .and()
-                .withUser("a").password(passwordEncoder().encode("a")).roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//                .withUser("trainer@spartaglobal.com").password(passwordEncoder().encode("trainer")).roles("TRAINER")
+//                .and()
+//                .withUser("trainee@spartaglobal.com").password(passwordEncoder().encode("trainee")).roles("TRAINEE")
+//                .and()
+//                .withUser("a").password(passwordEncoder().encode("a")).roles("TRAINER")
+//                .and()
+//                .withUser("b").password(passwordEncoder().encode("b")).roles("TRAINEE");
 
-
+        CSVLoginReader csvLoginReader = new CSVLoginReader("src/main/resources/login.csv");
+        String loginDetails = csvLoginReader.getNextCSVLine();
+        while (loginDetails != null) {
+            System.out.println("LPOGIN DETAILS: " + loginDetails);
+            String[] loginCredentials = loginDetails.split(",");
+            auth.inMemoryAuthentication()
+                    .withUser(loginCredentials[0]).password(passwordEncoder().encode(loginCredentials[1])).roles(loginCredentials[2]);
+            loginDetails = csvLoginReader.getNextCSVLine();
+        }
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/admin*").hasRole("ADMIN")
-////                .antMatchers("/anonymous*").anonymous()
-//                .antMatchers("/*").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login").permitAll()
-//                .loginProcessingUrl("/perform_login")
-////                .successHandler(new RoleUrlAuthenticationSuccessHandler())
-////                .defaultSuccessUrl("http://localhost:8080/home")
-////              .failureUrl("/login.html?error=true")
-//                .failureUrl("/loginFailure")
-//                .and()
-//                .logout()
-//                .logoutUrl("/perform_logout")
-//                .deleteCookies("JSESSIONID")
-//                .logoutSuccessUrl("/home");
-////                .csrf().disable()
-////                .formLogin()
-////                .loginPage("/public/login/login.html")
-////                .loginProcessingUrl("/perform_login")
-////                .defaultSuccessUrl("/public/home.html",true)
-////                .failureUrl("/exceptions/error.html");
+        http
+                .csrf().disable()
+                .authorizeRequests()
+//                .antMatchers("/trainer*").hasRole("TRAINER")
+//                .antMatchers("/trainee*").hasRole("TRAINEE")
+//                .antMatchers("/anonymous*").anonymous()
+                .antMatchers("/css/**", "/webjars/**", "/index", "/", "/images/**", "/login*").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .loginProcessingUrl("/perform_login")
+                .successHandler(new RoleUrlAuthenticationSuccessHandler())
+//                .defaultSuccessUrl("http://localhost:8080/home")
+//              .failureUrl("/login.html?error=true")
+                .failureHandler(new FailureHandler("/loginFailure"))
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login");
+
     }
 
     @Bean

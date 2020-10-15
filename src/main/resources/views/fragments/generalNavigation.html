@@ -10,9 +10,18 @@
 <nav th:fragment="publicMenu(activeScreen)" class="">
     <!--Bootstrap stuff-->
 </nav>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 
-    <h1>General Navigation bar</h1>
+    <div class="mx-auto my-2 order-100 order-md-1 position-relative">
+        <a class="mx-auto" th:href="@{/login}">
+            <img th:src="@{/images/spartaLogo.png}">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
+</nav>
 <br/>
 <br/>
 <br/>

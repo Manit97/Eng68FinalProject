@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/fragments :: layout(~{::head}, ~{::nav}, ~{::main})}">
-<head th:replace="~{fragments/head :: headFragment(title='Trainee Tracker: Log In')}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
-    <title>Trainee Tracker: Log In</title>
+    <title>Home</title>
 </head>
-<body class="text-center">
-<nav th:replace="~{fragments/generalNavigation}">Navigation</nav>
-<main>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+<body>
+
+    <h1>This is the home page!</h1>
     <div class="container-md text-center">
         <form class="form-signin" th:action="@{/perform_login}" method="POST">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -27,6 +23,6 @@
             <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">Sign in</button>
         </form>
     </div>
-</main>
+
 </body>
 </html>

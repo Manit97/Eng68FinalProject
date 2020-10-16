@@ -4,4 +4,5 @@ public class PageMappings {
 
     public static String HOME_PAGE = "/home";
 
+
 }

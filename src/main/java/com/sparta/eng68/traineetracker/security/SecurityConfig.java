@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .withUser(loginCredentials[0]).password(passwordEncoder().encode(loginCredentials[1])).roles(loginCredentials[2]);
             loginDetails = csvLoginReader.getNextCSVLine();
         }
+
     }
 
     @Override
@@ -60,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login");
-
     }
 
     @Bean

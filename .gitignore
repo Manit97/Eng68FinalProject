@@ -1,6 +1,9 @@
 # Log file
 *.log
 
+#CSV file
+*.csv
+
 # BlueJ files
 *.ctxt
 

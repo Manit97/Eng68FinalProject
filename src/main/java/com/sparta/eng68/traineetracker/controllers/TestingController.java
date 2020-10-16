@@ -13,4 +13,7 @@ public class TestingController {
         return Pages.accessPage(Roles.ANY, Pages.HOME_PAGE);
     }
 
+    @GetMapping("/guide")
+    public String getTraineeGuide() { return Pages.TRAINEE_GUIDE;}
+
 }

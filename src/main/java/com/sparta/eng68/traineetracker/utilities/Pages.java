@@ -17,6 +17,9 @@ public class Pages {
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";
 
+    //Any =======================================================================================
+    public static final String CONSULTANCY = "/trainee/consultancy";
+
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
 

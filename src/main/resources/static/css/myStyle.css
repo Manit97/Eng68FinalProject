@@ -3,5 +3,6 @@
     bottom: 0 !important;
     width: 100% !important;
     height: 180px !important;
-    position: absolute !important;
+    position: sticky !important;
+    background-color: white !important;
 }

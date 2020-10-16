@@ -18,6 +18,8 @@ public class Pages {
 
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";
+    public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
+    public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
 
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";

@@ -18,12 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @Controller
-public class PasswordChangeController {
+public class UserController {
 
     private final UserService userService;
 
     @Autowired
-    public PasswordChangeController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -42,6 +42,13 @@ public class PasswordChangeController {
         userService.addFirstPassword(username, password);
 
         return new ModelAndView("redirect:"+Pages.accessPage(Role.ANY, Pages.LOGOUT_CURRENT_USER), modelMap);
+    }
+
+    @PostMapping("/addNewUser")
+    public ModelAndView addNewUser(@RequestParam String username, ModelMap modelMap) {
+        userService.addNewUser(username);
+
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_REDIRECT), modelMap);
     }
 
 }

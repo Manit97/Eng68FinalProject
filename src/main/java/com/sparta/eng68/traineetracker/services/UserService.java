@@ -2,6 +2,7 @@ package com.sparta.eng68.traineetracker.services;
 
 import com.sparta.eng68.traineetracker.entities.User;
 import com.sparta.eng68.traineetracker.repositories.UserRepository;
+import com.sparta.eng68.traineetracker.utilities.PasswordGenerator;
 import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,6 +35,16 @@ public class UserService {
         User user = userRepository.findByUsername(username);
 
         user.setPassword(newPassword);
+
+        userRepository.save(user);
+    }
+
+    public void addNewUser(String username) {
+        User user = new User();
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(PasswordGenerator.generatePassword()));
+        user.setRole(Role.FIRST_TIME_USER);
 
         userRepository.save(user);
     }

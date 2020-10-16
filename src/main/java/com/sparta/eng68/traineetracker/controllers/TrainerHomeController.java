@@ -13,4 +13,9 @@ public class TrainerHomeController {
         return Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME);
     }
 
+    @GetMapping("/newUser")
+    public String newUserForm() {
+        return Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_PAGE);
+    }
+
 }

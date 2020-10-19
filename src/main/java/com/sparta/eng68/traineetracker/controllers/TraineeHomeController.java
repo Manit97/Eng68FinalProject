@@ -13,4 +13,10 @@ public class TraineeHomeController {
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
     }
 
+    @GetMapping("/traineeFeedback")
+    public String getTraineeFeedbackForm() {
+
+        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_FEEDBACK);
+    }
+
 }

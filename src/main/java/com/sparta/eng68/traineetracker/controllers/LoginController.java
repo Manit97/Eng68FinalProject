@@ -17,7 +17,7 @@ public class LoginController {
 
     @GetMapping("/")
     public String getSimpleRedirect() {
-        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE);
+        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE_REDIRECT);
     }
 
     @GetMapping("loginnew")

@@ -18,4 +18,9 @@ public class TrainerHomeController {
         return Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_PAGE);
     }
 
+    @GetMapping("/trainerFeedbackForm")
+    public String getTrainerFeedbackForm() {
+        return Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE);
+    }
+
 }

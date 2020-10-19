@@ -15,6 +15,7 @@ public class Pages {
 
     //TRAINEE =======================================================================================
     public static final String TRAINEE_HOME = "/trainee/traineeHome";
+    public static final String TRAINEE_GUIDE = "/trainee/traineeGuide";
 
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";

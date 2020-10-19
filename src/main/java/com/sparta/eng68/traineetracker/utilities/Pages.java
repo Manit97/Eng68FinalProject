@@ -10,6 +10,7 @@ public class Pages {
     //LOGIN =========================================================================================
     public static final String HOME_PAGE = "/home";
     public static final String LOGIN_PAGE = "/login/login";
+    public static final String LOGIN_PAGE_REDIRECT = "/login";
     public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
     public static final String LOGOUT_CURRENT_USER = "/perform_logout";
 
@@ -21,6 +22,7 @@ public class Pages {
     public static final String TRAINER_HOME = "/trainer/trainerHome";
     public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
     public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
+    public static final String TRAINER_FEEDBACK_FORM_PAGE = "/trainer/trainerFeedbackForm";
 
     //Any =======================================================================================
     public static final String CONSULTANCY = "/trainee/consultancy";

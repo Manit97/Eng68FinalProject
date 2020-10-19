@@ -20,6 +20,11 @@ public class LoginController {
         return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE_REDIRECT);
     }
 
+    @GetMapping("loginnew")
+    public String getSimpleRedirect1() {
+        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_NEW_PAGE);
+    }
+
     @GetMapping("/login")
     public String getLogin(ModelMap modelMap,
                            @ModelAttribute("loginResult") final Object loginResult) {

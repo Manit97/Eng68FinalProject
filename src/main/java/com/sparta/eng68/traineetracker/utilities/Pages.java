@@ -22,6 +22,7 @@ public class Pages {
 
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
+    public static final String PAGE_NOT_FOUND_ERROR = "/errors/pagenotfounderror";
 
     public static String accessPage(String requiredRole, String page) {
 

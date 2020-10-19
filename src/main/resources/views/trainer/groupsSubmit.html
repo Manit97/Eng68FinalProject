@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <h1 th:text="${id}"></h1>
+    <h1 th:text="'Assigned ' + ${trainee.firstName} + ' ' + ${trainee.lastName} + ' to ' + ${group.groupName}"></h1>
 
 </body>
 </html>

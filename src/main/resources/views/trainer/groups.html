@@ -18,7 +18,15 @@
                                 th:value="${trainee.traineeId}"
                                 th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"/>
                     </select>
-
+                </td>
+                <td>Select Group</td>
+                <td>
+                    <select th:field="*{groupId}">
+                        <option value="0"> -- </option>
+                        <option th:each="group : ${allGroups}"
+                                th:value="${group.groupId}"
+                                th:text="${group.groupName}"/>
+                    </select>
                 </td>
             </tr>
 

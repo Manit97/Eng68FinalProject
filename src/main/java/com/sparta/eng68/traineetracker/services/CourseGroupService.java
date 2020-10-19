@@ -21,4 +21,9 @@ public class CourseGroupService {
     public Optional<CourseGroup> getGroupByID(Integer id) {
         return (Optional<CourseGroup>) courseGroupRepository.findById(id);
     }
+
+    public List<CourseGroup> getAllCourseGroups() {
+        return (List<CourseGroup>) courseGroupRepository.findAll();
+    }
+
 }

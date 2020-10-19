@@ -38,6 +38,7 @@ public class WeekReport {
 
     @Id
     @Column(name = "report_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getReportId() {
         return reportId;
     }

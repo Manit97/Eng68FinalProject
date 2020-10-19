@@ -24,4 +24,9 @@ public class TraineeService {
     public Optional<Trainee> getTraineeByID(Integer id) {
         return (Optional<Trainee>) traineeRepository.findById(id);
     }
+
+    public List<Trainee> getTraineesByGroupId(int group_id){
+        List<Trainee> trainees = traineeRepository.findAllByGroupId(group_id);
+        return trainees;
+    }
 }

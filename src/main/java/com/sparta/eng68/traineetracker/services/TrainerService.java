@@ -24,4 +24,8 @@ public class TrainerService {
     public Optional<Trainer> getTrainerByID(Integer id) {
         return (Optional<Trainer>) trainerRepository.findById(id);
     }
+
+    public Optional<Trainer> getTrainerByUsername(String username){
+        return trainerRepository.findByUsername(username);
+    }
 }

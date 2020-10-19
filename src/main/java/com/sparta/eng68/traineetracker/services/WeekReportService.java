@@ -24,4 +24,11 @@ public class WeekReportService {
     public Optional<WeekReport> getGroupByID(Integer id) {
         return (Optional<WeekReport>) weekReportRepository.findById(id);
     }
+
+    public void createReports(List<WeekReport> weekReports){
+        for(WeekReport weekReport: weekReports){
+           weekReportRepository.save(weekReport);
+        }
+
+    }
 }

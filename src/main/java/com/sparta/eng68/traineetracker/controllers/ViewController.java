@@ -13,6 +13,9 @@ public class ViewController {
         return Pages.accessPage(Role.ANY, Pages.CONSULTANCY);
     }
 
+    @GetMapping("/traineeGuide")
+    public String getTraineeGuide() { return Pages.TRAINEE_GUIDE;}
+
     @GetMapping("/pagenotfounderror")
     public String get404() {
         return Pages.accessPage(Role.ANY, Pages.PAGE_NOT_FOUND_ERROR);

@@ -31,7 +31,7 @@ public class Pages {
 
     //Any =======================================================================================
     public static final String CONSULTANCY = "/trainee/consultancy";
-    public static final String TRAINEE_GUIDE = "/trainee/traineeGuide";
+
 
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";

@@ -1,22 +1,20 @@
 package com.sparta.eng68.traineetracker.controllers;
 
 import com.sparta.eng68.traineetracker.utilities.Pages;
-import com.sparta.eng68.traineetracker.utilities.Roles;
+import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.management.relation.Role;
 
 @Controller
 public class ViewController {
 
     @GetMapping("/consultancy")
     public String getConsultancySkills() {
-        return Pages.accessPage(Roles.ANY, Pages.CONSULTANCY);
+        return Pages.accessPage(Role.ANY, Pages.CONSULTANCY);
     }
 
     @GetMapping("/pagenotfounderror")
     public String get404() {
-        return Pages.accessPage(Roles.ANY, Pages.PAGE_NOT_FOUND_ERROR);
+        return Pages.accessPage(Role.ANY, Pages.PAGE_NOT_FOUND_ERROR);
     }
 }

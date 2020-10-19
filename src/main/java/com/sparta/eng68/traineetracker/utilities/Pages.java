@@ -13,6 +13,7 @@ public class Pages {
     public static final String LOGIN_NEW_PAGE = "/login/loginnew";
     public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
     public static final String LOGOUT_CURRENT_USER = "/perform_logout";
+    public static final String CHANGE_PASSWORD = "/login/passwordChanger";
 
     //TRAINEE =======================================================================================
     public static final String TRAINEE_HOME = "/trainee/traineeHome";

@@ -11,22 +11,170 @@
         <title>Trainee Reports</title>
     </head>
     <body>
-        <div class="accordion" id="accordionExample">
-            <div class="card" th:each="report : ${reports}">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-
-                        </button>
-                    </h2>
+        <nav th:replace="~{fragments/publicNavigation}">Navigation</nav>
+        <main>
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Weekly Reports</h1>
                 </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="card" th:each="report : ${reports}">
+                    <div class="card-header" th:id="${'heading' + report.getWeekNum()}">
+                        <h2 class="mb-0">
+                            <button aria-expanded="show"
+                                    class="btn btn-link btn-block text-left"
+                                    data-toggle="collapse"
+                                    th:data-target="${'#collapse' + report.getWeekNum()}"
+                                    th:aria-controls="${'collapse' + report.getWeekNum()}"
+                                    th:text="${'Week ' + report.getWeekNum()}"
+                                    type="button">
+                            </button>
+                        </h2>
+                    </div>
+                    <div th:id="${'collapse' + report.getWeekNum()}" class="collapse hide" th:aria-labelledby="${'heading' + report.getWeekNum()}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="jumbotron">
+                                <h2 th:text="${'Report - Week ' + report.getWeekNum()}"></h2>
+                                <br/>
+                                <div class="card-deck">
+                                    <div class="card" id="SSCs">
+                                        <br/>
+                                        <div class="card">
+                                            <h4><strong>Trainee SSCs</strong></h4>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td><strong>Start</strong></td>
+                                                    <td th:text="${report.getStartTrainee()}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Stop</strong></td>
+                                                    <td th:text="${report.getStopTrainee()}"></td>
+                                                </tr>
+                                                    <td><strong>Continue</strong></td>
+                                                    <td th:text="${report.getContinueTrainee()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br/>
+                                        <div class="card">
+                                            <h4><strong>Trainer SSCs</strong></h4>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td><strong>Start</strong></td>
+                                                    <td th:text="${report.getStartTrainer()}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Stop</strong></td>
+                                                    <td th:text="${report.getStopTrainer()}"></td>
+                                                </tr>
+                                                    <td><strong>Continue</strong></td>
+                                                    <td th:text="${report.getContinueTrainer()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                    <div class="card" id="Grades">
+                                        <br/>
+                                        <div class="card">
+                                            <h4><strong>Trainee Grades</strong></h4>
+                                            <div style="text-align: center;">
+                                                <div class="card-deck">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <small class="text-muted">Consultant Grade</small>
+                                                        </div>
+                                                        <div class="card-body">
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        Some text
+                                                            <big class="text-muted" th:text="${report.getConsultantGradeTrainee()}"></big>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <small class="text-muted">Technical Grade</small>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <big class="text-muted" th:text="${report.getTechnicalGradeTrainee()}"></big>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="card">
+                                            <h4><strong>Trainer Grades</strong></h4>
+                                            <div style="text-align: center;">
+                                                <div class="card-deck">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <small class="text-muted">Consultant Grade</small>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <big class="text-muted" th:text="${report.getConsultantGradeTrainer()}"></big>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <small class="text-muted">Technical Grade</small>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <big class="text-muted" th:text="${report.getTechnicalGradeTrainer()}"></big>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <small class="text-muted">Overall Grade</small>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <big class="text-muted" th:text="${report.getOverallGradeTrainer()}"></big>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="card-deck">
+                                    <div class="card" id="bottom">
+                                        <br/>
+                                        <div class="card">
+                                            <h4><strong>Comments</strong></h4>
+                                            <p th:text="${report.getTrainerComments()}"></p>
+                                        <br/>
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td><strong>Deadline</strong></td>
+                                                            <td th:text="${report.getDeadline()}"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="card">
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td><strong>Last Edited</strong></td>
+                                                            <td th:text="${report.getMostRecentEdit()}"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </body>
 </html>

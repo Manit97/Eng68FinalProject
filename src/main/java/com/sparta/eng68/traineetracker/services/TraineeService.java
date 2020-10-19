@@ -28,4 +28,15 @@ public class TraineeService {
     public Optional<Trainee> getTraineeByUsername(String username){
         return traineeRepository.findTraineeByUsername(username);
     }
+
+    public Trainee changeTraineeCourseGroupByID(int traineeId, int newGroupId) {
+        Trainee trainee = getTraineeByID(traineeId).get();
+        trainee.setGroupId(newGroupId);
+        trainee = traineeRepository.save(trainee);
+        return trainee;
+
+    public List<Trainee> getTraineesByGroupId(int group_id){
+        List<Trainee> trainees = traineeRepository.findAllByGroupId(group_id);
+        return trainees;
+    }
 }

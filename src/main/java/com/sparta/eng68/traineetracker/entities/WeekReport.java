@@ -4,9 +4,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "week_report", schema = "training_tracker", catalog = "")
+@Table(name = "week_report", schema = "training_tracker")
 public class WeekReport {
     private Integer reportId;
+    private Integer traineeId;
     private Integer weekNum;
     private LocalDateTime deadline;
     private String consultantGradeTrainee;
@@ -43,6 +44,16 @@ public class WeekReport {
 
     public void setReportId(Integer reportId) {
         this.reportId = reportId;
+    }
+
+    @Basic
+    @Column(name = "trainee_id")
+    public Integer getTraineeId() {
+        return traineeId;
+    }
+
+    public void setTraineeId(Integer traineeId) {
+        this.traineeId = traineeId;
     }
 
     @Basic
@@ -323,6 +334,7 @@ public class WeekReport {
         WeekReport that = (WeekReport) o;
 
         if (reportId != null ? !reportId.equals(that.reportId) : that.reportId != null) return false;
+        if (traineeId != null ? !traineeId.equals(that.traineeId) : that.traineeId != null) return false;
         if (weekNum != null ? !weekNum.equals(that.weekNum) : that.weekNum != null) return false;
         if (deadline != null ? !deadline.equals(that.deadline) : that.deadline != null) return false;
         if (consultantGradeTrainee != null ? !consultantGradeTrainee.equals(that.consultantGradeTrainee) : that.consultantGradeTrainee != null)
@@ -378,6 +390,7 @@ public class WeekReport {
     @Override
     public int hashCode() {
         int result = reportId != null ? reportId.hashCode() : 0;
+        result = 31 * result + (traineeId != null ? traineeId.hashCode() : 0);
         result = 31 * result + (weekNum != null ? weekNum.hashCode() : 0);
         result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
         result = 31 * result + (consultantGradeTrainee != null ? consultantGradeTrainee.hashCode() : 0);

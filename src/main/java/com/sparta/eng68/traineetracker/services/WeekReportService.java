@@ -17,6 +17,10 @@ public class WeekReportService {
         this.weekReportRepository = weekReportRepository;
     }
 
+    public List<WeekReport> getAllReports() {
+        return (List<WeekReport>) weekReportRepository.findAll();
+    }
+
     public Optional<WeekReport> getGroupByID(Integer id) {
         return (Optional<WeekReport>) weekReportRepository.findById(id);
     }

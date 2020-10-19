@@ -33,10 +33,15 @@ public class UserService {
 
     public void changePasswordByUsername(String username, String newPassword) {
         User user = userRepository.findByUsername(username);
-
-        user.setPassword(newPassword);
-
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
         userRepository.save(user);
+    }
+
+    public User getUserByUsername(String username){
+        User user = userRepository.findByUsername(username);
+        return user;
     }
 
     public void addNewUser(String username) {
@@ -47,6 +52,18 @@ public class UserService {
         user.setRole(Role.FIRST_TIME_USER);
 
         userRepository.save(user);
+    }
+
+    public boolean isPasswordSame(String username, String password){
+        User user = userRepository.findByUsername(username);
+        String encodedPassword = user.getPassword();
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //String encodedPasswordTest = passwordEncoder.encode(password);
+        if(passwordEncoder.matches(password,encodedPassword)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

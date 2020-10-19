@@ -5,3 +5,41 @@
     height: 180px !important;
     background-color: white !important;
 }
+.sideNav{
+    background-color: #fff;
+}
+.sidebar .nav-item .nav-link{
+    color: #471955 !important;
+}
+.sidebar-dark .nav-item .nav-link i {
+    color: #3CBDEF !important;
+}
+
+.sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
+    color: #F100B9 !important;
+}
+
+.sidebar-dark #sidebarToggle {
+    background-color: #98d5ea !important;
+}
+
+.sidebar-dark #sidebarToggle::after {
+    color: #471955 !important;
+}
+
+.sidebar-dark #sidebarToggle:hover {
+    background-color: #90cade !important;
+}
+
+.sidebar-dark.toggled #sidebarToggle::after {
+    color: #471955 !important;
+}
+.bg-grey{
+    background-color: #eeeeee !important;
+}
+.sidebar-divider{
+    border-top: 1px solid #e5e4e4 !important;
+}
+.spartaLogo{
+    width: 70%;
+}

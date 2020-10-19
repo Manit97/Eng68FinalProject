@@ -22,7 +22,11 @@ public class TraineeService {
     }
 
     public Optional<Trainee> getTraineeByID(Integer id) {
-        return (Optional<Trainee>) traineeRepository.findById(id);
+        return traineeRepository.findById(id);
+    }
+
+    public Optional<Trainee> getTraineeByUsername(String username){
+        return traineeRepository.findTraineeByUsername(username);
     }
 
     public Trainee changeTraineeCourseGroupByID(int traineeId, int newGroupId) {

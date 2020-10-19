@@ -25,6 +25,12 @@ public class TraineeService {
         return (Optional<Trainee>) traineeRepository.findById(id);
     }
 
+    public Trainee changeTraineeCourseGroupByID(int traineeId, int newGroupId) {
+        Trainee trainee = getTraineeByID(traineeId).get();
+        trainee.setGroupId(newGroupId);
+        trainee = traineeRepository.save(trainee);
+        return trainee;
+
     public List<Trainee> getTraineesByGroupId(int group_id){
         List<Trainee> trainees = traineeRepository.findAllByGroupId(group_id);
         return trainees;

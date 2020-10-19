@@ -22,6 +22,11 @@ public class CourseGroupService {
         return (Optional<CourseGroup>) courseGroupRepository.findById(id);
     }
 
+
+    public List<CourseGroup> getAllCourseGroups() {
+        return (List<CourseGroup>) courseGroupRepository.findAll();
+    }
+
     public void incrementWeek(int id){
          Optional<CourseGroup> courseGroup =courseGroupRepository.findById(id);
          CourseGroup courseGroup1 = courseGroup.get();

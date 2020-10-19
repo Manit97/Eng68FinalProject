@@ -1,18 +1,31 @@
 package com.sparta.eng68.traineetracker.controllers;
 
 import com.sparta.eng68.traineetracker.entities.WeekReport;
+import com.sparta.eng68.traineetracker.services.TraineeService;
+import com.sparta.eng68.traineetracker.services.WeekReportService;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Controller
 public class TraineeHomeController {
+
+    private final WeekReportService weekReportService;
+    private final TraineeService traineeService;
+
+    @Autowired
+    public TraineeHomeController(WeekReportService weekReportService, TraineeService traineeService) {
+        this.weekReportService = weekReportService;
+        this.traineeService = traineeService;
+    }
 
     @GetMapping("/traineeHome")
     public String getTraineeHome() {
@@ -20,19 +33,21 @@ public class TraineeHomeController {
     }
 
     @GetMapping("/traineeFeedback")
-    public String getTraineeFeedbackForm(Model model) {
-        model.addAttribute("traineeFeedback", new WeekReport());
-        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_FEEDBACK);
+    public String getTraineeFeedbackForm(Model model, Principal principal) {
+        Integer traineeId = traineeService.getTraineeByUsername(principal.getName()).get().getTraineeId();
+        model.addAttribute("traineeFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId));
+        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_FEEDBACK_FORM_PAGE);
     }
 
     @PostMapping("/traineeUpdateReport")
-    public void submitTraineeFeedbackForm(@ModelAttribute WeekReport weekReport){
+    public String submitTraineeFeedbackForm(@ModelAttribute WeekReport weekReport){
         weekReport.setTraineeConsultantGradeFlag((byte) 1);
         weekReport.setTraineeTechnicalGradeFlag((byte) 1);
         weekReport.setTraineeStartFlag((byte) 1);
         weekReport.setTraineeStopFlag((byte) 1);
         weekReport.setTraineeContinueFlag((byte) 1);
         weekReport.setMostRecentEdit(LocalDateTime.now());
+        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
     }
 
 }

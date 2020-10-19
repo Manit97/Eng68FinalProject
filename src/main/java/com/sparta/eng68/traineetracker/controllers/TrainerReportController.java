@@ -4,6 +4,7 @@ import com.sparta.eng68.traineetracker.entities.WeekReport;
 import com.sparta.eng68.traineetracker.services.WeekReportService;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class TrainerReportController {
 
     private final WeekReportService weekReportService;
 
+    @Autowired
     public TrainerReportController(WeekReportService weekReportService) {
         this.weekReportService = weekReportService;
     }
@@ -30,8 +32,6 @@ public class TrainerReportController {
 
     @GetMapping("/trainerUpdateReport")
     public ModelAndView getUpdateTrainerReport(ModelMap modelMap) {
-
-
         return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_REDIRECT),modelMap);
     }
 

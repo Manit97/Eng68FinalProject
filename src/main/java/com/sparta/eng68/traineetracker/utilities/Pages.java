@@ -10,6 +10,8 @@ public class Pages {
     //LOGIN =========================================================================================
     public static final String HOME_PAGE = "/home";
     public static final String LOGIN_PAGE = "/login/login";
+    public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
+    public static final String LOGOUT_CURRENT_USER = "/perform_logout";
 
     //TRAINEE =======================================================================================
     public static final String TRAINEE_HOME = "/trainee/traineeHome";
@@ -17,6 +19,8 @@ public class Pages {
 
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";
+    public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
+    public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
 
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
@@ -25,7 +29,7 @@ public class Pages {
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
-        if (request.isUserInRole(requiredRole) || requiredRole.equals(Roles.ANY)) {
+        if (request.isUserInRole(requiredRole) || requiredRole.equals(Role.ANY)) {
             return page;
         } else {
             return ACCESS_ERROR;

@@ -1,25 +1,24 @@
 package com.sparta.eng68.traineetracker.controllers;
 
 import com.sparta.eng68.traineetracker.utilities.Pages;
-import com.sparta.eng68.traineetracker.utilities.Roles;
+import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
+
+    @GetMapping("/")
+    public String getSimpleRedirect() {
+        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE);
+    }
 
     @GetMapping("/login")
     public String getLogin(ModelMap modelMap,
@@ -28,7 +27,7 @@ public class LoginController {
         modelMap.addAttribute("showError", loginResult);
 
 
-        return Pages.accessPage(Roles.ANY, Pages.LOGIN_PAGE);
+        return Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE);
     }
 
     @GetMapping("/loginFailure")

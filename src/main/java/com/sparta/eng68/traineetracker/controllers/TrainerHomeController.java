@@ -3,6 +3,7 @@ package com.sparta.eng68.traineetracker.controllers;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -16,11 +17,6 @@ public class TrainerHomeController {
     @GetMapping("/newUser")
     public String newUserForm() {
         return Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_PAGE);
-    }
-
-    @GetMapping("/trainerFeedbackForm")
-    public String getTrainerFeedbackForm() {
-        return Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE);
     }
 
 }

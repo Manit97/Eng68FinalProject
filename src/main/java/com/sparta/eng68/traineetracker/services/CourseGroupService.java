@@ -22,8 +22,24 @@ public class CourseGroupService {
         return (Optional<CourseGroup>) courseGroupRepository.findById(id);
     }
 
+
     public List<CourseGroup> getAllCourseGroups() {
         return (List<CourseGroup>) courseGroupRepository.findAll();
     }
 
+    public void incrementWeek(int id){
+         Optional<CourseGroup> courseGroup =courseGroupRepository.findById(id);
+         CourseGroup courseGroup1 = courseGroup.get();
+         int week_num = courseGroup1.getCurrentWeek();
+         week_num++;
+         courseGroup1.setCurrentWeek(week_num);
+         courseGroupRepository.save(courseGroup1);
+    }
+
+    public int getWeekByGroupId(int id) {
+        Optional<CourseGroup> courseGroup =courseGroupRepository.findById(id);
+        CourseGroup courseGroup1 = courseGroup.get();
+        int week_num = courseGroup1.getCurrentWeek();
+        return week_num;
+    }
 }

@@ -36,6 +36,7 @@ public class Pages {
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
     public static final String PAGE_NOT_FOUND_ERROR = "/errors/pagenotfounderror";
+    public static final String NO_ITEM_IN_DATABASE_ERROR = "/errors/itemNotFound";
 
     public static String accessPage(String requiredRole, String page) {
 

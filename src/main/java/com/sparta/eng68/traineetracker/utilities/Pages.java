@@ -22,8 +22,12 @@ public class Pages {
     public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
     public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
 
+    //Any =======================================================================================
+    public static final String CONSULTANCY = "/trainee/consultancy";
+
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
+    public static final String PAGE_NOT_FOUND_ERROR = "/errors/pagenotfounderror";
 
     public static String accessPage(String requiredRole, String page) {
 

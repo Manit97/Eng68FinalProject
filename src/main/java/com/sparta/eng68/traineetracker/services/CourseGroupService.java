@@ -42,4 +42,8 @@ public class CourseGroupService {
         int week_num = courseGroup1.getCurrentWeek();
         return week_num;
     }
+
+    public void saveNewGroup(CourseGroup newGroup) {
+        courseGroupRepository.save(newGroup);
+    }
 }

@@ -2,22 +2,22 @@ package com.sparta.eng68.traineetracker.utilities;
 
 public class AssignGroupForm {
 
-    private int traineeId;
-    private int groupId;
+    private Integer traineeId;
+    private Integer groupId;
 
-    public int getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
-    public int getTraineeId() {
+    public Integer getTraineeId() {
         return traineeId;
     }
 
-    public void setTraineeId(int traineeId) {
+    public void setTraineeId(Integer traineeId) {
         this.traineeId = traineeId;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 }

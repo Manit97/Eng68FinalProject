@@ -18,7 +18,6 @@ public class CourseGroup {
     private LocalDateTime endDate;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "group_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getGroupId() {

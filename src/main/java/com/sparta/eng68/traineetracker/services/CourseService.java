@@ -20,4 +20,9 @@ public class CourseService {
     public Optional<Course> getGroupByID(Integer id) {
         return (Optional<Course>) courseRepository.findById(id);
     }
+
+    public List<Course> getAllCourses() {
+        return (List<Course>) courseRepository.findAll();
+    }
+
 }

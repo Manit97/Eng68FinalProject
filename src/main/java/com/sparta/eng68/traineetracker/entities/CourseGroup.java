@@ -1,5 +1,7 @@
 package com.sparta.eng68.traineetracker.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,11 +12,14 @@ public class CourseGroup {
     private String groupName;
     private Integer courseId;
     private Integer currentWeek;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
 
     @Id
     @Column(name = "group_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getGroupId() {
         return groupId;
     }

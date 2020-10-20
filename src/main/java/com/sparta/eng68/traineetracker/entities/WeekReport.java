@@ -2,9 +2,10 @@ package com.sparta.eng68.traineetracker.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
-@Table(name = "week_report", schema = "training_tracker")
+@Table(name = "week_report", schema = "training_tracker", catalog = "")
 public class WeekReport {
     private Integer reportId;
     private Integer traineeId;
@@ -28,17 +29,12 @@ public class WeekReport {
     private Byte traineeContinueFlag;
     private Byte traineeConsultantGradeFlag;
     private Byte traineeTechnicalGradeFlag;
-    private Byte trainerCommentsFlag;
-    private Byte trainerStartFlag;
-    private Byte trainerStopFlag;
-    private Byte trainerContinueFlag;
-    private Byte trainerConsultantGradeFlag;
-    private Byte trainerTechnicalGradeFlag;
-    private Byte trainerOverallGradeFlag;
+    private Byte traineeSubmittedFlag;
+    private Byte trainerCompletedFlag;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "report_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getReportId() {
         return reportId;
     }
@@ -258,167 +254,58 @@ public class WeekReport {
     }
 
     @Basic
-    @Column(name = "trainer_comments_flag")
-    public Byte getTrainerCommentsFlag() {
-        return trainerCommentsFlag;
+    @Column(name = "trainee_submitted_flag")
+    public Byte getTraineeSubmittedFlag() {
+        return traineeSubmittedFlag;
     }
 
-    public void setTrainerCommentsFlag(Byte trainerCommentsFlag) {
-        this.trainerCommentsFlag = trainerCommentsFlag;
-    }
-
-    @Basic
-    @Column(name = "trainer_start_flag")
-    public Byte getTrainerStartFlag() {
-        return trainerStartFlag;
-    }
-
-    public void setTrainerStartFlag(Byte trainerStartFlag) {
-        this.trainerStartFlag = trainerStartFlag;
+    public void setTraineeSubmittedFlag(Byte traineeSubmittedFlag) {
+        this.traineeSubmittedFlag = traineeSubmittedFlag;
     }
 
     @Basic
-    @Column(name = "trainer_stop_flag")
-    public Byte getTrainerStopFlag() {
-        return trainerStopFlag;
+    @Column(name = "trainer_completed_flag")
+    public Byte getTrainerCompletedFlag() {
+        return trainerCompletedFlag;
     }
 
-    public void setTrainerStopFlag(Byte trainerStopFlag) {
-        this.trainerStopFlag = trainerStopFlag;
-    }
-
-    @Basic
-    @Column(name = "trainer_continue_flag")
-    public Byte getTrainerContinueFlag() {
-        return trainerContinueFlag;
-    }
-
-    public void setTrainerContinueFlag(Byte trainerContinueFlag) {
-        this.trainerContinueFlag = trainerContinueFlag;
-    }
-
-    @Basic
-    @Column(name = "trainer_consultant_grade_flag")
-    public Byte getTrainerConsultantGradeFlag() {
-        return trainerConsultantGradeFlag;
-    }
-
-    public void setTrainerConsultantGradeFlag(Byte trainerConsultantGradeFlag) {
-        this.trainerConsultantGradeFlag = trainerConsultantGradeFlag;
-    }
-
-    @Basic
-    @Column(name = "trainer_technical_grade_flag")
-    public Byte getTrainerTechnicalGradeFlag() {
-        return trainerTechnicalGradeFlag;
-    }
-
-    public void setTrainerTechnicalGradeFlag(Byte trainerTechnicalGradeFlag) {
-        this.trainerTechnicalGradeFlag = trainerTechnicalGradeFlag;
-    }
-
-    @Basic
-    @Column(name = "trainer_overall_grade_flag")
-    public Byte getTrainerOverallGradeFlag() {
-        return trainerOverallGradeFlag;
-    }
-
-    public void setTrainerOverallGradeFlag(Byte trainerOverallGradeFlag) {
-        this.trainerOverallGradeFlag = trainerOverallGradeFlag;
+    public void setTrainerCompletedFlag(Byte trainerCompletedFlag) {
+        this.trainerCompletedFlag = trainerCompletedFlag;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         WeekReport that = (WeekReport) o;
-
-        if (reportId != null ? !reportId.equals(that.reportId) : that.reportId != null) return false;
-        if (traineeId != null ? !traineeId.equals(that.traineeId) : that.traineeId != null) return false;
-        if (weekNum != null ? !weekNum.equals(that.weekNum) : that.weekNum != null) return false;
-        if (deadline != null ? !deadline.equals(that.deadline) : that.deadline != null) return false;
-        if (consultantGradeTrainee != null ? !consultantGradeTrainee.equals(that.consultantGradeTrainee) : that.consultantGradeTrainee != null)
-            return false;
-        if (technicalGradeTrainee != null ? !technicalGradeTrainee.equals(that.technicalGradeTrainee) : that.technicalGradeTrainee != null)
-            return false;
-        if (startTrainee != null ? !startTrainee.equals(that.startTrainee) : that.startTrainee != null) return false;
-        if (stopTrainee != null ? !stopTrainee.equals(that.stopTrainee) : that.stopTrainee != null) return false;
-        if (continueTrainee != null ? !continueTrainee.equals(that.continueTrainee) : that.continueTrainee != null)
-            return false;
-        if (consultantGradeTrainer != null ? !consultantGradeTrainer.equals(that.consultantGradeTrainer) : that.consultantGradeTrainer != null)
-            return false;
-        if (technicalGradeTrainer != null ? !technicalGradeTrainer.equals(that.technicalGradeTrainer) : that.technicalGradeTrainer != null)
-            return false;
-        if (overallGradeTrainer != null ? !overallGradeTrainer.equals(that.overallGradeTrainer) : that.overallGradeTrainer != null)
-            return false;
-        if (trainerComments != null ? !trainerComments.equals(that.trainerComments) : that.trainerComments != null)
-            return false;
-        if (startTrainer != null ? !startTrainer.equals(that.startTrainer) : that.startTrainer != null) return false;
-        if (stopTrainer != null ? !stopTrainer.equals(that.stopTrainer) : that.stopTrainer != null) return false;
-        if (continueTrainer != null ? !continueTrainer.equals(that.continueTrainer) : that.continueTrainer != null)
-            return false;
-        if (mostRecentEdit != null ? !mostRecentEdit.equals(that.mostRecentEdit) : that.mostRecentEdit != null)
-            return false;
-        if (traineeStartFlag != null ? !traineeStartFlag.equals(that.traineeStartFlag) : that.traineeStartFlag != null)
-            return false;
-        if (traineeStopFlag != null ? !traineeStopFlag.equals(that.traineeStopFlag) : that.traineeStopFlag != null)
-            return false;
-        if (traineeContinueFlag != null ? !traineeContinueFlag.equals(that.traineeContinueFlag) : that.traineeContinueFlag != null)
-            return false;
-        if (traineeConsultantGradeFlag != null ? !traineeConsultantGradeFlag.equals(that.traineeConsultantGradeFlag) : that.traineeConsultantGradeFlag != null)
-            return false;
-        if (traineeTechnicalGradeFlag != null ? !traineeTechnicalGradeFlag.equals(that.traineeTechnicalGradeFlag) : that.traineeTechnicalGradeFlag != null)
-            return false;
-        if (trainerCommentsFlag != null ? !trainerCommentsFlag.equals(that.trainerCommentsFlag) : that.trainerCommentsFlag != null)
-            return false;
-        if (trainerStartFlag != null ? !trainerStartFlag.equals(that.trainerStartFlag) : that.trainerStartFlag != null)
-            return false;
-        if (trainerStopFlag != null ? !trainerStopFlag.equals(that.trainerStopFlag) : that.trainerStopFlag != null)
-            return false;
-        if (trainerContinueFlag != null ? !trainerContinueFlag.equals(that.trainerContinueFlag) : that.trainerContinueFlag != null)
-            return false;
-        if (trainerConsultantGradeFlag != null ? !trainerConsultantGradeFlag.equals(that.trainerConsultantGradeFlag) : that.trainerConsultantGradeFlag != null)
-            return false;
-        if (trainerTechnicalGradeFlag != null ? !trainerTechnicalGradeFlag.equals(that.trainerTechnicalGradeFlag) : that.trainerTechnicalGradeFlag != null)
-            return false;
-        if (trainerOverallGradeFlag != null ? !trainerOverallGradeFlag.equals(that.trainerOverallGradeFlag) : that.trainerOverallGradeFlag != null)
-            return false;
-
-        return true;
+        return Objects.equals(reportId, that.reportId) &&
+                Objects.equals(traineeId, that.traineeId) &&
+                Objects.equals(weekNum, that.weekNum) &&
+                Objects.equals(deadline, that.deadline) &&
+                Objects.equals(consultantGradeTrainee, that.consultantGradeTrainee) &&
+                Objects.equals(technicalGradeTrainee, that.technicalGradeTrainee) &&
+                Objects.equals(startTrainee, that.startTrainee) &&
+                Objects.equals(stopTrainee, that.stopTrainee) &&
+                Objects.equals(continueTrainee, that.continueTrainee) &&
+                Objects.equals(consultantGradeTrainer, that.consultantGradeTrainer) &&
+                Objects.equals(technicalGradeTrainer, that.technicalGradeTrainer) &&
+                Objects.equals(overallGradeTrainer, that.overallGradeTrainer) &&
+                Objects.equals(trainerComments, that.trainerComments) &&
+                Objects.equals(startTrainer, that.startTrainer) &&
+                Objects.equals(stopTrainer, that.stopTrainer) &&
+                Objects.equals(continueTrainer, that.continueTrainer) &&
+                Objects.equals(mostRecentEdit, that.mostRecentEdit) &&
+                Objects.equals(traineeStartFlag, that.traineeStartFlag) &&
+                Objects.equals(traineeStopFlag, that.traineeStopFlag) &&
+                Objects.equals(traineeContinueFlag, that.traineeContinueFlag) &&
+                Objects.equals(traineeConsultantGradeFlag, that.traineeConsultantGradeFlag) &&
+                Objects.equals(traineeTechnicalGradeFlag, that.traineeTechnicalGradeFlag) &&
+                Objects.equals(traineeSubmittedFlag, that.traineeSubmittedFlag) &&
+                Objects.equals(trainerCompletedFlag, that.trainerCompletedFlag);
     }
 
     @Override
     public int hashCode() {
-        int result = reportId != null ? reportId.hashCode() : 0;
-        result = 31 * result + (traineeId != null ? traineeId.hashCode() : 0);
-        result = 31 * result + (weekNum != null ? weekNum.hashCode() : 0);
-        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
-        result = 31 * result + (consultantGradeTrainee != null ? consultantGradeTrainee.hashCode() : 0);
-        result = 31 * result + (technicalGradeTrainee != null ? technicalGradeTrainee.hashCode() : 0);
-        result = 31 * result + (startTrainee != null ? startTrainee.hashCode() : 0);
-        result = 31 * result + (stopTrainee != null ? stopTrainee.hashCode() : 0);
-        result = 31 * result + (continueTrainee != null ? continueTrainee.hashCode() : 0);
-        result = 31 * result + (consultantGradeTrainer != null ? consultantGradeTrainer.hashCode() : 0);
-        result = 31 * result + (technicalGradeTrainer != null ? technicalGradeTrainer.hashCode() : 0);
-        result = 31 * result + (overallGradeTrainer != null ? overallGradeTrainer.hashCode() : 0);
-        result = 31 * result + (trainerComments != null ? trainerComments.hashCode() : 0);
-        result = 31 * result + (startTrainer != null ? startTrainer.hashCode() : 0);
-        result = 31 * result + (stopTrainer != null ? stopTrainer.hashCode() : 0);
-        result = 31 * result + (continueTrainer != null ? continueTrainer.hashCode() : 0);
-        result = 31 * result + (mostRecentEdit != null ? mostRecentEdit.hashCode() : 0);
-        result = 31 * result + (traineeStartFlag != null ? traineeStartFlag.hashCode() : 0);
-        result = 31 * result + (traineeStopFlag != null ? traineeStopFlag.hashCode() : 0);
-        result = 31 * result + (traineeContinueFlag != null ? traineeContinueFlag.hashCode() : 0);
-        result = 31 * result + (traineeConsultantGradeFlag != null ? traineeConsultantGradeFlag.hashCode() : 0);
-        result = 31 * result + (traineeTechnicalGradeFlag != null ? traineeTechnicalGradeFlag.hashCode() : 0);
-        result = 31 * result + (trainerCommentsFlag != null ? trainerCommentsFlag.hashCode() : 0);
-        result = 31 * result + (trainerStartFlag != null ? trainerStartFlag.hashCode() : 0);
-        result = 31 * result + (trainerStopFlag != null ? trainerStopFlag.hashCode() : 0);
-        result = 31 * result + (trainerContinueFlag != null ? trainerContinueFlag.hashCode() : 0);
-        result = 31 * result + (trainerConsultantGradeFlag != null ? trainerConsultantGradeFlag.hashCode() : 0);
-        result = 31 * result + (trainerTechnicalGradeFlag != null ? trainerTechnicalGradeFlag.hashCode() : 0);
-        result = 31 * result + (trainerOverallGradeFlag != null ? trainerOverallGradeFlag.hashCode() : 0);
-        return result;
+        return Objects.hash(reportId, traineeId, weekNum, deadline, consultantGradeTrainee, technicalGradeTrainee, startTrainee, stopTrainee, continueTrainee, consultantGradeTrainer, technicalGradeTrainer, overallGradeTrainer, trainerComments, startTrainer, stopTrainer, continueTrainer, mostRecentEdit, traineeStartFlag, traineeStopFlag, traineeContinueFlag, traineeConsultantGradeFlag, traineeTechnicalGradeFlag, traineeSubmittedFlag, trainerCompletedFlag);
     }
 }

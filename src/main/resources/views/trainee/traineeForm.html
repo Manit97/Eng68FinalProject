@@ -23,7 +23,8 @@
         </div>
         <div class="container-md">
             <div class="row">
-            <form th:action="@{/traineeFeedback}" method="get">
+            <form th:action="@{/traineeUpdateReport}" method="post">
+
                 <div class="col">
                 <table class="table table-bordered">
                     <thead>
@@ -35,21 +36,21 @@
                     <tbody>
                     <tr>
                         <th scope="row">Stop</th>
-                        <td><textarea type="input" rows="5" th:value="traineeFeedback.stopTrainee"></textarea></td>
+                        <td><textarea type="input" name="stopTrainee" rows="5" th:text="${traineeFeedback.stopTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
                         <th scope="row">Start</th>
-                        <td> <textarea type="input" rows="5" th:value="traineeFeedback.startTrainee"></textarea></td>
+                        <td> <textarea type="input" name="startTrainee" rows="5" th:text="${traineeFeedback.startTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
                         <th scope="row">Continue</th>
-                        <td> <textarea type="input" rows="5" th:value="traineeFeedback.continueTrainee"></textarea></td>
+                        <td> <textarea type="input" name="continueTrainee" rows="5" th:text="${traineeFeedback.continueTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
@@ -64,16 +65,16 @@
                 <div class="row">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-success active">
-                                <input type="radio" name="traineeTechGrade" id="techA" autocomplete="off" checked th:value="A"> A
+                                <input type="radio" name="traineeTechGrade" id="techA" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'A'}" th:value="A"> A
                             </label>
                             <label class="btn btn-success">
-                                <input type="radio" name="traineeTechGrade" id="techB" autocomplete="off" th:value="B"> B
+                                <input type="radio" name="traineeTechGrade" id="techB" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'B'}" th:value="B"> B
                             </label>
-                            <label class="btn btn-warning">
-                                <input type="radio" name="traineeTechGrade" id="techC" autocomplete="off" th:value="C"> C
+                            <label class="btn btn-warning amber">
+                                <input type="radio" name="traineeTechGrade" id="techC" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'C'}" th:value="C"> C
                             </label>
-                            <label class="btn btn-danger">
-                                <input type="radio" name="traineeTechGrade" id="techD" autocomplete="off" th:value="D"> D
+                            <label class="btn btn-danger crimson">
+                                <input type="radio" name="traineeTechGrade" id="techD" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'D'}" th:value="D"> D
                             </label>
                         </div>
                 </div>
@@ -84,22 +85,23 @@
                 <div class="row">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-success active">
-                                <input type="radio" name="traineeConsulGrade" id="consulA" autocomplete="off" checked th:value="A"> A
+                                <input type="radio" name="traineeConsulGrade" id="consulA" autocomplete="off" th:checked="${traineeFeedback.consultantGradeTrainee == 'A'}" th:value="A"> A
                             </label>
                             <label class="btn btn-success">
-                                <input type="radio" name="traineeConsulGrade" id="consulB" autocomplete="off" th:value="B"> B
+                                <input type="radio" name="traineeConsulGrade" id="consulB" autocomplete="off" th:checked="${traineeFeedback.consultantGradeTrainee == 'B'}" th:value="B"> B
                             </label>
                             <label class="btn btn-warning">
-                                <input type="radio" name="traineeConsulGrade" id="consulC" autocomplete="off" th:value="C"> C
+                                <input type="radio" name="traineeConsulGrade" id="consulC" autocomplete="off" th:checked="${traineeFeedback.consultantGradeTrainee == 'C'}" th:value="C"> C
                             </label>
                             <label class="btn btn-danger">
-                                <input type="radio" name="traineeConsulGrade" id="consulD" autocomplete="off"  th:value="D"> D
+                                <input type="radio" name="traineeConsulGrade" id="consulD" autocomplete="off" th:checked="${traineeFeedback.consultantGradeTrainee == 'D'}" th:value="D"> D
                             </label>
                         </div>
                 </div>
                 <br/>
                 <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
             </div>
+                <input class="invisible-input" type="number" name="reportId" th:value="${traineeFeedback.reportId}"/>
             </form>
             </div>
         </div>

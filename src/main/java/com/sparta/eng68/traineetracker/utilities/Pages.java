@@ -28,6 +28,8 @@ public class Pages {
     public static final String TRAINER_FEEDBACK_FORM_PAGE = "/trainer/trainerFeedbackForm";
     public static final String GROUPS = "/trainer/groups";
     public static final String GROUPS_SUBMIT_CHANGE = "/trainer/groupsSubmit";
+    public static final String ADD_WEEKS = "/trainer/newWeekPage";
+    public static final String week_success ="/trainer/weekSuccess";
 
     //Any =======================================================================================
     public static final String CONSULTANCY = "/trainee/consultancy";

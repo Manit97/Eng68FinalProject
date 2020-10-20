@@ -8,6 +8,7 @@ import com.sparta.eng68.traineetracker.repositories.WeekReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,10 @@ public class WeekReportService {
         this.weekReportRepository = weekReportRepository;
         this.courseGroupRepository = courseGroupRepository;
         this.traineeRepository = traineeRepository;
+    }
+
+    public Optional<WeekReport> getWeekReportByReportId(Integer reportId) {
+        return weekReportRepository.findById(reportId);
     }
 
     public List<WeekReport> getAllReports() {

@@ -19,7 +19,7 @@ public class Pages {
     public static final String TRAINEE_HOME = "/trainee/traineeHome";
     public static final String TRAINEE_GUIDE = "/trainee/traineeGuide";
     public static final String TRAINEE_REPORT = "/trainee/traineeReport";
-    public static final String TRAINEE_FEEDBACK = "/trainee/traineeForm";
+    public static final String TRAINEE_FEEDBACK_FORM_PAGE = "/trainee/traineeForm";
 
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";
@@ -36,6 +36,7 @@ public class Pages {
     //ERROR =========================================================================================
     public static final String ACCESS_ERROR = "/errors/accessError";
     public static final String PAGE_NOT_FOUND_ERROR = "/errors/pagenotfounderror";
+    public static final String NO_ITEM_IN_DATABASE_ERROR = "/errors/itemNotFound";
 
     public static String accessPage(String requiredRole, String page) {
 

@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <form id="form1" >
+    <form id="form1" th:action="@{/trainerFeebackForm}" th:object="${weekReport}">
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -36,21 +36,21 @@
         <tr>
             <th scope="row">Stop</th>
             <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true'><input type="text" name="trainerStop" value="Name" />TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER</td>
+            <td contenteditable='true' ><input type="text" name="trainerStop" th:value="${weekReport.stopTrainer}" th:field="*{stopTrainer}" /></td>
         </tr>
         <tr>
             <th scope="row">Start</th>
             <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true'>TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER</td>
+            <td contenteditable='true'>TRAINER TRAINER TRAINER </td>
         </tr>
         <tr>
             <th scope="row">Continue</th>
             <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true'>TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER TRAINER</td>
+            <td></td>
         </tr>
         <tr>
             <th scope="row">Trainer Comments</th>
-            <td colspan="2" contenteditable='true'>comments comments comments comments comments comments comments comments comments comments comments comments comments comments comments comments w</td>
+            <td colspan="2"></td>
         </tr>
         </thead>
     </table>

@@ -1,9 +1,6 @@
 package com.sparta.eng68.traineetracker.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Trainer {
@@ -14,6 +11,7 @@ public class Trainer {
     private String username;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "trainer_id")
     public Integer getTrainerId() {
         return trainerId;

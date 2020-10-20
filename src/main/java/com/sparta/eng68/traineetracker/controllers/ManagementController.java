@@ -1,7 +1,9 @@
 package com.sparta.eng68.traineetracker.controllers;
 
+import com.sparta.eng68.traineetracker.entities.CourseGroup;
 import com.sparta.eng68.traineetracker.entities.Trainee;
 import com.sparta.eng68.traineetracker.services.CourseGroupService;
+import com.sparta.eng68.traineetracker.services.CourseService;
 import com.sparta.eng68.traineetracker.services.TraineeService;
 import com.sparta.eng68.traineetracker.utilities.AssignGroupForm;
 import com.sparta.eng68.traineetracker.utilities.Pages;
@@ -20,11 +22,13 @@ public class ManagementController {
 
     public final TraineeService traineeService;
     public final CourseGroupService courseGroupService;
+    public final CourseService courseService;
 
     @Autowired
-    public ManagementController(TraineeService traineeService, CourseGroupService courseGroupService) {
+    public ManagementController(TraineeService traineeService, CourseGroupService courseGroupService, CourseService courseService) {
         this.traineeService = traineeService;
         this.courseGroupService = courseGroupService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/groups")
@@ -32,15 +36,20 @@ public class ManagementController {
         model.addAttribute("assignGroupForm", new AssignGroupForm());
         model.addAttribute("allTrainees", traineeService.getAllTrainees());
         model.addAttribute("allGroups", courseGroupService.getAllCourseGroups());
+        model.addAttribute("allCourses", courseService.getAllCourses());
+        model.addAttribute("newClass", new CourseGroup());
         return Pages.accessPage(Role.TRAINER, Pages.GROUPS);
     }
 
+    @PostMapping("/createGroup")
+    public ModelAndView createGroup(@ModelAttribute CourseGroup newClass, ModelMap model) {
+        courseGroupService.saveNewGroup(newClass);
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
+    }
+
+
     @PostMapping("/submitGroupChange")
     public ModelAndView postGroupChange(@ModelAttribute AssignGroupForm assignGroupForm, ModelMap model) {
-
-        if (assignGroupForm.getTraineeId() == 0 || assignGroupForm.getGroupId() == 0) {
-            return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
-        }
 
         Trainee trainee = traineeService.changeTraineeCourseGroupByID(assignGroupForm.getTraineeId(), assignGroupForm.getGroupId());
         model.addAttribute("trainee", trainee);

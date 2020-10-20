@@ -35,19 +35,30 @@ public class TraineeHomeController {
     @GetMapping("/traineeFeedback")
     public String getTraineeFeedbackForm(Model model, Principal principal) {
         Integer traineeId = traineeService.getTraineeByUsername(principal.getName()).get().getTraineeId();
-        model.addAttribute("traineeFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId));
+        model.addAttribute("traineeFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId).get());
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_FEEDBACK_FORM_PAGE);
     }
 
     @PostMapping("/traineeUpdateReport")
-    public String submitTraineeFeedbackForm(@ModelAttribute WeekReport weekReport){
+    public String submitTraineeFeedbackForm(Integer reportId, String stopTrainee, String startTrainee,
+                                            String continueTrainee, String traineeConsulGrade,
+                                            String traineeTechGrade){
+
+        WeekReport weekReport = weekReportService.getWeekReportByReportId(reportId).get();
+        weekReport.setStopTrainee(stopTrainee);
+        weekReport.setStartTrainee(startTrainee);
+        weekReport.setContinueTrainee(continueTrainee);
+        weekReport.setTechnicalGradeTrainee(traineeTechGrade);
+        weekReport.setConsultantGradeTrainee(traineeConsulGrade);
         weekReport.setTraineeConsultantGradeFlag((byte) 1);
         weekReport.setTraineeTechnicalGradeFlag((byte) 1);
         weekReport.setTraineeStartFlag((byte) 1);
         weekReport.setTraineeStopFlag((byte) 1);
         weekReport.setTraineeContinueFlag((byte) 1);
         weekReport.setMostRecentEdit(LocalDateTime.now());
-        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
+
+        weekReportService.updateWeekReport(weekReport);
+        return Pages.accessPage(Role.TRAINEE, "redirect:"+Pages.TRAINEE_FEEDBACK_FORM_PAGE_REDIRECT);
     }
 
 }

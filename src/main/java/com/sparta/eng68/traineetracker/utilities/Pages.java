@@ -20,6 +20,7 @@ public class Pages {
     public static final String TRAINEE_GUIDE = "/trainee/traineeGuide";
     public static final String TRAINEE_REPORT = "/trainee/traineeReport";
     public static final String TRAINEE_FEEDBACK_FORM_PAGE = "/trainee/traineeForm";
+    public static final String TRAINEE_FEEDBACK_FORM_PAGE_REDIRECT = "/traineeFeedback";
 
     //TRAINER =======================================================================================
     public static final String TRAINER_HOME = "/trainer/trainerHome";

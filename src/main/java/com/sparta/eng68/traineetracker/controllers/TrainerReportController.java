@@ -25,7 +25,19 @@ public class TrainerReportController {
     }
 
     @PostMapping("/trainerUpdateReport")
-    public ModelAndView postUpdateTrainerReport(ModelMap modelMap) {
+    public ModelAndView postUpdateTrainerReport(ModelMap modelMap, Integer reportId, String stopTrainee,
+                                                String startTrainee, String continueTrainee, String trainerComments, String stopTrainer,
+                                                String startTrainer, String continueTrainer) {
+
+        WeekReport weekReport = weekReportService.getWeekReportByReportId(reportId).get();
+
+        weekReport.setStopTrainer(stopTrainer);
+        weekReport.setStartTrainer(startTrainer);
+        weekReport.setContinueTrainer(continueTrainer);
+        weekReport.setTrainerComments(trainerComments);
+        weekReport.setTrainerCompletedFlag((byte) 1);
+
+        weekReportService.updateWeekReport(weekReport);
 
         return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_REDIRECT),modelMap);
     }
@@ -41,7 +53,7 @@ public class TrainerReportController {
         if (weekReport.isEmpty()) {
             return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.NO_ITEM_IN_DATABASE_ERROR), modelMap);
         }
-        modelMap.addAttribute("weekReport", weekReport.get());
+        modelMap.addAttribute("trainerFeedback", weekReport.get());
 
         return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE), modelMap);
     }

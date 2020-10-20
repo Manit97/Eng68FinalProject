@@ -24,39 +24,55 @@
         </div>
     </div>
 
-    <form id="form1" th:action="@{/trainerFeebackForm}" th:object="${weekReport}">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <td></td>
-            <th scope="col">Trainee Feedback</th>
-            <th scope="col">Trainer Feedback</th>
-        </tr>
+    <div class="container-sm">
+        <form th:action="@{/trainerUpdateReport}" method="post">
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Trainee Feedback</th>
+                        <th>Trainer Feedback</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Stop</th>
+                        <td><textarea readonly type="input" name="stopTrainee" rows="5" th:text="${trainerFeedback.stopTrainee}"></textarea></td>
+                        <td><textarea type="input" name="stopTrainer" rows="5" th:text="${trainerFeedback.stopTrainer}"></textarea></td>
 
-        <tr>
-            <th scope="row">Stop</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true' ><input type="text" name="trainerStop" th:value="${weekReport.stopTrainer}" th:field="*{stopTrainer}" /></td>
-        </tr>
-        <tr>
-            <th scope="row">Start</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true'>TRAINER TRAINER TRAINER </td>
-        </tr>
-        <tr>
-            <th scope="row">Continue</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">Trainer Comments</th>
-            <td colspan="2"></td>
-        </tr>
-        </thead>
-    </table>
-        <input type="submit" name="submitButton" value="Submit">
-    </form>
-
+                        </th>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Start</th>
+                        <td> <textarea readonly type="input" name="startTrainee" rows="5" th:text="${trainerFeedback.startTrainee}"></textarea></td>
+                        <td><textarea type="input" name="startTrainer" rows="5" th:text="${trainerFeedback.startTrainer}"></textarea></td>
+                        </th>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Continue</th>
+                        <td> <textarea readonly type="input" name="continueTrainee" rows="5" th:text="${trainerFeedback.continueTrainee}"></textarea></td>
+                        <td><textarea type="input" name="continueTrainer" rows="5" th:text="${trainerFeedback.continueTrainer}"></textarea></td>
+                        </th>
+                    <tr>
+                        <th scope="row">Trainer Comments</th>
+                        <td colspan="2"> <textarea cols="100" type="input" name="trainerComments" rows="5" th:text="${trainerFeedback.trainerComments}"></textarea></td>
+                        </th>
+                    </tr></tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <div class="col">
+                <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <input class="invisible-input" type="number" name="reportId" th:value="${trainerFeedback.reportId}"/>
+        </form>
+    </div>
 
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

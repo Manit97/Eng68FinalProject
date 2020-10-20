@@ -43,4 +43,37 @@
 .spartaLogo{
     width: 70%;
 }
+.amber:hover{
+    background: #100e01 !important;
+}
+.crimson:hover{
+    background: #0c0101 !important;
+}
+.amber:focus{
+    background: #100e01 !important;
+}
+.crimson:focus{
+    background: #0c0101 !important;
+}
+.amber:checked{
+    background: #161101 !important;
+}
+.crimson:checked{
+    background: #1c0105 !important;
+}
+.amber:active{
+    background: #100e01 !important;
+}
+.crimson:active{
+    background: #0c0101 !important;
+}
+.invisible-input {
+    visibility: hidden !important;
+}
+
+.border-bottom-color {
+    border-bottom: 0.25rem solid #F100B9 !important;
+}
+
+
 

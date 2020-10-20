@@ -34,8 +34,13 @@ public class WeekReportService {
         return (List<WeekReport>) weekReportRepository.findAll();
     }
 
-    public Optional<WeekReport> getGroupByID(Integer id) {
+    public Optional<WeekReport> getReportByID(Integer id) {
         return (Optional<WeekReport>) weekReportRepository.findById(id);
+    }
+
+
+    public List<WeekReport> getReportsByTraineeID(Integer traineeId) {
+        return weekReportRepository.findByTraineeId(traineeId);
     }
 
     public void createReports(List<WeekReport> weekReports) {

@@ -1,5 +1,7 @@
 package com.sparta.eng68.traineetracker.utilities;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class PasswordGenerator {
@@ -41,4 +43,15 @@ public class PasswordGenerator {
         return (char) i;
     }
 
+    public static void writeToFile(String username, String password) {
+        try{
+            File file = new File("src/main/resources/login.csv");
+            file.createNewFile();
+
+            CSVLoginWriter csvLoginWriter = new CSVLoginWriter(file);
+            csvLoginWriter.writeStringRecordToFile(username + "," + password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

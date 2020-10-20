@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Successfully added new weeks for this group!</h1>
+    <form th:action = "@{/trainerHome}">
+        <button type="submit">Dashboard</button>
+    </form>
+    <form th:action = "@{/addNewWeeks}">
+        <button type="submit">Add more weeks</button>
+    </form>
+</body>
+</html>

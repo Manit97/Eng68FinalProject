@@ -39,6 +39,11 @@ public class TrainerReportController {
                                                 String stopTrainer, String startTrainer, String continueTrainer) {
 
         WeekReport weekReport = weekReportService.getWeekReportByReportId(reportId).get();
+        Integer traineeId = weekReport.getTraineeId();
+        Trainee trainee = traineeService.getTraineeByID(traineeId).get();
+        List <WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);
+
+        Collections.reverse(reports);
 
         weekReport.setStopTrainer(stopTrainer);
         weekReport.setStartTrainer(startTrainer);
@@ -50,8 +55,12 @@ public class TrainerReportController {
         weekReport.setTrainerCompletedFlag((byte) 1);
 
         weekReportService.updateWeekReport(weekReport);
+        modelMap.addAttribute("traineeId", traineeId);
+        modelMap.addAttribute("trainee", trainee);
+        modelMap.addAttribute("reports", reports);
+        modelMap.addAttribute("now", LocalDateTime.now());
 
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_REDIRECT),modelMap);
+        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_REPORT),modelMap);
     }
 
     @GetMapping("/trainerUpdateReport")
@@ -73,22 +82,24 @@ public class TrainerReportController {
     }
 
     @PostMapping("/trainerFeedbackForm")
-    public ModelAndView getTrainerFeedbackForm(@RequestParam Integer traineeId, ModelMap modelMap) {
+    public ModelAndView getTrainerFeedbackForm(@RequestParam Integer reportId, ModelMap modelMap) {
+        WeekReport report = weekReportService.getReportByID(reportId).get();
+        Integer traineeId = report.getTraineeId();
         modelMap.addAttribute("trainee", traineeService.getTraineeByID(traineeId).get());
-        modelMap.addAttribute("trainerFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId).get());
+        modelMap.addAttribute("trainerFeedback", weekReportService.getReportByID(reportId).get());
 
         return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE), modelMap);
     }
 
     @GetMapping("/weeklyReportsTrainer")
-    public String getTrainerWeeklyReports(@RequestParam Integer traineeId, Model model, Principal principal) {
+    public String getTrainerWeeklyReports(@RequestParam Integer traineeId, Model model) {
         Trainee trainee = traineeService.getTraineeByID(traineeId).get();
         List<WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);
         Collections.reverse(reports);
+        model.addAttribute("traineeId", traineeId);
         model.addAttribute("trainee", trainee);
         model.addAttribute("reports", reports);
         model.addAttribute("now", LocalDateTime.now());
-        //return Pages.accessPage(Role.TRAINER, Pages.TRAINER_REPORT);
-        return "trainer/trainerReport";
+        return Pages.accessPage(Role.TRAINER, Pages.TRAINER_REPORT);
     }
 }

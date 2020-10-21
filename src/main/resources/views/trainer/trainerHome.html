@@ -22,6 +22,71 @@
             <div class="text-center align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 " style="color: #E23561">Trainer Dashboard</h1>
             </div>
+            <div class="container-md">
+                <form th:action="@{/weeklyReportsTrainer}" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="traineeSelector">Select Trainee:</label>
+                                <select class="form-control" id="traineeSelector">
+                                    <option th:each="trainee: ${traineeList}" th:value="${trainee.traineeId}" th:text="${trainee.firstName} + ' ' + ${trainee.lastName}" th:name="traineeId">Trainee</option>
+                                </select>
+                            </div>
+                            <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <div class="col">
+                            <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Missed Deadlines:</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Trainees who have not submitted their feedback forms</h6>
+                                    <p class="card-text">
+                                        <ul>
+                                            <li class="missedDeadline" th:each="missedDeadlineTrainee: ${missedDeadlineList}" th:text="${missedDeadlineTrainee.firstName} + ' ' + ${missedDeadlineTrainee.lastName}"></li>
+                                        </ul>
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
+                        <br/>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Feedback Pending:</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Trainer feedback to be completed</h6>
+                                    <p class="card-text">
+                                    <ul>
+                                        <li th:each="missingFeedbackTrainee: ${toCompleteList}" th:text="${missingFeedbackTrainee.firstName} + ' ' + ${missingFeedbackTrainee.lastName}"></li>
+                                    </ul>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th th:rowspan="2">Trainee</th>
+                                <th th:colspan="${courseDuration}">Week</th>
+                            </tr>
+                            <tr>
+                                <th th:each="i: ${courseDurationList}" th:text="${i}"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="traineeCounter: ${traineeCounter}">
+                                <th scope="row" th:text="${traineeList.get(traineeCounter).getFirstName()} + ' ' + ${traineeList.get(traineeCounter).getLastName()}">Trainee Name</th>
+                                <td th:each="weekReport: ${traineeCompletedList.get(traineeCounter)}" th:text="${weekReport.getTraineeSubmittedFlag()}">y</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

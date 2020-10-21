@@ -75,5 +75,26 @@
     border-bottom: 0.25rem solid #F100B9 !important;
 }
 
+ul li {
+    color: crimson;
+}
 
+.completeState0{
+    background-color: crimson;
+}
+
+.completeState1{
+    background-color: darkseagreen;
+}
+
+.feedbackFormTextArea{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
 

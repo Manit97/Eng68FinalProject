@@ -19,16 +19,17 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800" th:text="${trainee.firstName} + ' ' + ${trainee.lastName} + ' Week ' + ${trainerFeedback.weekNum} + ' Feedback Report'">Trainer Feedback Form</h1>
+            <h1 class="h3 mb-0" th:text="${trainee.firstName} + ' ' + ${trainee.lastName} + ' Week ' + ${trainerFeedback.weekNum} + ' Feedback Report'" style="color: #E23561">Trainer Feedback Form</h1>
 
         </div>
     </div>
 
     <div class="container-sm">
         <form th:action="@{/trainerUpdateReport}" method="post">
-            <div class="col">
-                <table class="table table-bordered">
-                    <thead>
+            <div class="row">
+                <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
                     <tr>
                         <th></th>
                         <th>Trainee Feedback</th>
@@ -38,8 +39,8 @@
                     <tbody>
                     <tr>
                         <th scope="row">Stop</th>
-                        <td><textarea readonly type="input" name="stopTrainee" rows="5" th:text="${trainerFeedback.stopTrainee}"></textarea></td>
-                        <td><textarea type="input" name="stopTrainer" rows="5" th:text="${trainerFeedback.stopTrainer}"></textarea></td>
+                        <td><textarea class="feedbackFormTextArea" readonly type="input" name="stopTrainee" th:text="${trainerFeedback.stopTrainee}"></textarea></td>
+                        <td><textarea class="feedbackFormTextArea" type="input" name="stopTrainer" th:text="${trainerFeedback.stopTrainer}"></textarea></td>
 
                         </th>
                     </tr>
@@ -47,28 +48,32 @@
                     <tbody>
                     <tr>
                         <th scope="row">Start</th>
-                        <td> <textarea readonly type="input" name="startTrainee" rows="5" th:text="${trainerFeedback.startTrainee}"></textarea></td>
-                        <td><textarea type="input" name="startTrainer" rows="5" th:text="${trainerFeedback.startTrainer}"></textarea></td>
+                        <td> <textarea class="feedbackFormTextArea" readonly type="input" name="startTrainee" th:text="${trainerFeedback.startTrainee}"></textarea></td>
+                        <td><textarea class="feedbackFormTextArea" type="input" name="startTrainer" th:text="${trainerFeedback.startTrainer}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
                         <th scope="row">Continue</th>
-                        <td> <textarea readonly type="input" name="continueTrainee" rows="5" th:text="${trainerFeedback.continueTrainee}"></textarea></td>
-                        <td><textarea type="input" name="continueTrainer" rows="5" th:text="${trainerFeedback.continueTrainer}"></textarea></td>
+                        <td> <textarea class="feedbackFormTextArea" readonly type="input" name="continueTrainee" th:text="${trainerFeedback.continueTrainee}"></textarea></td>
+                        <td><textarea class="feedbackFormTextArea" type="input" name="continueTrainer" th:text="${trainerFeedback.continueTrainer}"></textarea></td>
                         </th>
                     <tr>
                         <th scope="row">Trainer Comments</th>
-                        <td colspan="2"> <textarea cols="100" type="input" name="trainerComments" rows="5" th:text="${trainerFeedback.trainerComments}"></textarea></td>
+                        <td colspan="2"> <textarea class="feedbackFormTextArea" cols="100" type="input" name="trainerComments" th:text="${trainerFeedback.trainerComments}"></textarea></td>
                         </th>
                     </tr></tr>
                     </tbody>
                 </table>
+                </div>
             </div>
             <br/>
-            <div class="col">
-                <h5>Assign Grades</h5>
+            <div class="row text-center">
+                <h4>Assign Grades</h4>
+            </div>
+            <div class="row">
+                <div class="col">
                 <div class="row">
                     <h6>Technical Skills</h6>
                 </div>
@@ -88,7 +93,9 @@
                         </label>
                     </div>
                 </div>
-                <br/>
+                </div>
+
+                <div class="col">
                 <div class="row">
                     <h6>Consultant Skills</h6>
                 </div>
@@ -108,7 +115,9 @@
                         </label>
                     </div>
                 </div>
-                <br/>
+                </div>
+
+                <div class="col">
                 <div class="row">
                     <h6>Overall Grade</h6>
                 </div>
@@ -128,8 +137,9 @@
                         </label>
                     </div>
                 </div>
-                <br/>
+                </div>
             </div>
+            <br/>
             <div class="col">
                 <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
             </div>

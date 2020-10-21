@@ -1,6 +1,8 @@
 package com.sparta.eng68.traineetracker.controllers;
 
+import com.sparta.eng68.traineetracker.entities.Trainee;
 import com.sparta.eng68.traineetracker.entities.WeekReport;
+import com.sparta.eng68.traineetracker.services.TraineeService;
 import com.sparta.eng68.traineetracker.services.WeekReportService;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
@@ -12,22 +14,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
 public class TrainerReportController {
 
+    private final TraineeService traineeService;
     private final WeekReportService weekReportService;
 
     @Autowired
-    public TrainerReportController(WeekReportService weekReportService) {
+    public TrainerReportController(WeekReportService weekReportService, TraineeService traineeService) {
         this.weekReportService = weekReportService;
+        this.traineeService = traineeService;
     }
 
     @PostMapping("/trainerUpdateReport")
-    public ModelAndView postUpdateTrainerReport(ModelMap modelMap, Integer reportId, String stopTrainee,
-                                                String startTrainee, String continueTrainee, String trainerComments, String stopTrainer,
-                                                String startTrainer, String continueTrainer) {
+    public ModelAndView postUpdateTrainerReport(ModelMap modelMap, Integer reportId, String trainerTechGrade,
+                                                String trainerConsulGrade, String trainerOverallGrade, String trainerComments,
+                                                String stopTrainer, String startTrainer, String continueTrainer) {
 
         WeekReport weekReport = weekReportService.getWeekReportByReportId(reportId).get();
 
@@ -35,11 +40,14 @@ public class TrainerReportController {
         weekReport.setStartTrainer(startTrainer);
         weekReport.setContinueTrainer(continueTrainer);
         weekReport.setTrainerComments(trainerComments);
+        weekReport.setTechnicalGradeTrainer(trainerTechGrade);
+        weekReport.setConsultantGradeTrainer(trainerConsulGrade);
+        weekReport.setOverallGradeTrainer(trainerOverallGrade);
         weekReport.setTrainerCompletedFlag((byte) 1);
 
         weekReportService.updateWeekReport(weekReport);
 
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_REDIRECT),modelMap);
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_REDIRECT),modelMap);
     }
 
     @GetMapping("/trainerUpdateReport")
@@ -49,7 +57,9 @@ public class TrainerReportController {
 
     @GetMapping("/trainerFeedbackForm")
     public ModelAndView getTrainerFeedbackForm(ModelMap modelMap) {
-        Optional<WeekReport> weekReport = weekReportService.getCurrentWeekReportByTraineeID(1);
+        Integer traineeID = 1;
+        modelMap.addAttribute("trainee", traineeService.getTraineeByID(traineeID).get());
+        Optional<WeekReport> weekReport = weekReportService.getCurrentWeekReportByTraineeID(traineeID);
         if (weekReport.isEmpty()) {
             return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.NO_ITEM_IN_DATABASE_ERROR), modelMap);
         }
@@ -60,7 +70,8 @@ public class TrainerReportController {
 
     @PostMapping("/trainerFeedbackForm")
     public ModelAndView getTrainerFeedbackForm(@RequestParam Integer traineeId, ModelMap modelMap) {
-        modelMap.addAttribute("weekReport", weekReportService.getCurrentWeekReportByTraineeID(traineeId).get());
+        modelMap.addAttribute("trainee", traineeService.getTraineeByID(traineeId).get());
+        modelMap.addAttribute("trainerFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId).get());
 
         return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE), modelMap);
     }

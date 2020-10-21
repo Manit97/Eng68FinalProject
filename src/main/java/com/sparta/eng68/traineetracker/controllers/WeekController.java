@@ -81,6 +81,33 @@ public class WeekController {
             LocalDate deadlineDay =LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
             LocalDateTime deadline = deadlineDay.atTime(18, 30);
             weekReport.setDeadline(deadline);
+
+            weekReport.setTrainerCompletedFlag((byte) 0);
+            weekReport.setTraineeConsultantGradeFlag((byte) 0);
+            weekReport.setTraineeContinueFlag((byte) 0);
+            weekReport.setTraineeStartFlag((byte) 0);
+            weekReport.setTraineeStopFlag((byte) 0);
+            weekReport.setTraineeSubmittedFlag((byte) 0);
+            weekReport.setTraineeTechnicalGradeFlag((byte) 0);
+
+            weekReport.setConsultantGradeTrainer("");
+            weekReport.setConsultantGradeTrainee("");
+            weekReport.setTechnicalGradeTrainee("");
+            weekReport.setTechnicalGradeTrainer("");
+
+            weekReport.setOverallGradeTrainer("");
+
+            weekReport.setMostRecentEdit(LocalDateTime.now());
+
+            weekReport.setStartTrainee("");
+            weekReport.setStartTrainer("");
+            weekReport.setStopTrainee("");
+            weekReport.setStopTrainer("");
+            weekReport.setContinueTrainee("");
+            weekReport.setContinueTrainer("");
+
+            weekReport.setTrainerComments("");
+
             weekReports.add(weekReport);
         }
         weekReportService.createReports(weekReports);

@@ -1,6 +1,7 @@
 package com.sparta.eng68.traineetracker.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Trainee {

@@ -3,6 +3,7 @@ package com.sparta.eng68.traineetracker.services;
 import com.sparta.eng68.traineetracker.entities.User;
 import com.sparta.eng68.traineetracker.repositories.UserRepository;
 import com.sparta.eng68.traineetracker.utilities.CSVLoginWriter;
+import com.sparta.eng68.traineetracker.utilities.EmailSender;
 import com.sparta.eng68.traineetracker.utilities.PasswordGenerator;
 import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -24,8 +26,8 @@ public class UserService {
     }
 
     public void addFirstPassword(String username, String newPassword) {
-        User user = userRepository.findByUsername(username);
-
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        User user = userOptional.get();
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
 
@@ -36,15 +38,16 @@ public class UserService {
     }
 
     public void changePasswordByUsername(String username, String newPassword) {
-        User user = userRepository.findByUsername(username);
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        User user = userOptional.get();
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
         user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 
-    public User getUserByUsername(String username){
-        User user = userRepository.findByUsername(username);
+    public Optional<User> getUserOptional(String username){
+        Optional<User> user = userRepository.findByUsername(username);
         return user;
     }
 
@@ -61,7 +64,8 @@ public class UserService {
     }
 
     public boolean isPasswordSame(String username, String password){
-        User user = userRepository.findByUsername(username);
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        User user = userOptional.get();
         String encodedPassword = user.getPassword();
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         //String encodedPasswordTest = passwordEncoder.encode(password);
@@ -76,4 +80,25 @@ public class UserService {
         userRepository.deleteByUsername(username);
     }
 
+    public boolean hasUser(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if(userOptional.isPresent()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void recoverPassword(String email) {
+        Optional<User> userOptional = userRepository.findByUsername(email);
+        User user = userOptional.get();
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = PasswordGenerator.generatePassword();
+//        EmailSender emailSender = new EmailSender();
+//        emailSender.email(email,password);
+        user.setPassword(passwordEncoder.encode(password));
+        PasswordGenerator.writeToFile(email,password);
+        user.setRole(Role.FIRST_TIME_USER);
+        userRepository.save(user);
+    }
 }

@@ -93,4 +93,19 @@ public class UserController {
         return new ModelAndView(Pages.accessPage(Role.ANY, Pages.CHANGE_PASSWORD));
     }
 
+    @PostMapping("/forgotPassword")
+    public ModelAndView getNewPassword(@RequestParam String email, ModelMap modelMap){
+        if(!(userService.hasUser(email))){
+            return new ModelAndView(Pages.accessPage(Role.ANY, Pages.USER_NOT_FOUND), modelMap);
+        }
+        userService.recoverPassword(email);
+
+        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.PASSWORD_SENT), modelMap);
+    }
+    @GetMapping("/recoverPassword")
+    public ModelAndView recoverPassword(ModelMap modelMap){
+        //return new ModelAndView()
+        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.RECOVER_PASSWORD), modelMap);
+    }
+
 }

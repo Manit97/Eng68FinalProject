@@ -3,7 +3,7 @@ package com.sparta.eng68.traineetracker.services;
 import com.sparta.eng68.traineetracker.entities.User;
 import com.sparta.eng68.traineetracker.repositories.UserRepository;
 import com.sparta.eng68.traineetracker.utilities.CSVLoginWriter;
-import com.sparta.eng68.traineetracker.utilities.EmailSender;
+//import com.sparta.eng68.traineetracker.utilities.EmailSender;
 import com.sparta.eng68.traineetracker.utilities.PasswordGenerator;
 import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.beans.factory.annotation.Autowired;

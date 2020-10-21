@@ -50,7 +50,7 @@ public class UserController {
     @PostMapping("/addNewUser")
     public ModelAndView addNewUser(@ModelAttribute NewUserForm newUserForm, ModelMap modelMap) {
 
-        if (userService.getUserByUsername(newUserForm.getEmail()) != null) {
+        if (userService.getUserOptional(newUserForm.getEmail()).isPresent()) {
             return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_ALREADY_EXISTS));
         }
 

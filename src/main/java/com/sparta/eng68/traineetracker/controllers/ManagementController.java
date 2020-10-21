@@ -43,6 +43,7 @@ public class ManagementController {
 
     @PostMapping("/createGroup")
     public ModelAndView createGroup(@ModelAttribute CourseGroup newClass, ModelMap model) {
+        newClass.setCurrentWeek(0);
         courseGroupService.saveNewGroup(newClass);
         return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
     }

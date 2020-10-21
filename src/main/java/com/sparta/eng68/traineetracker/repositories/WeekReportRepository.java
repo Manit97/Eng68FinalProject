@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface WeekReportRepository extends CrudRepository<WeekReport, Integer> {
 
-    List<WeekReport> findByTraineeId(Integer traineeId);
+    List<WeekReport> findByTraineeIdOrderByWeekNumAsc(Integer traineeId);
 
     Optional<WeekReport> findByWeekNumAndTraineeId(Integer weekNum, Integer traineeId);
 

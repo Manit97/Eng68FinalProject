@@ -40,7 +40,7 @@ public class WeekReportService {
 
 
     public List<WeekReport> getReportsByTraineeID(Integer traineeId) {
-        return weekReportRepository.findByTraineeId(traineeId);
+        return weekReportRepository.findByTraineeIdOrderByWeekNumAsc(traineeId);
     }
 
     public void createReports(List<WeekReport> weekReports) {

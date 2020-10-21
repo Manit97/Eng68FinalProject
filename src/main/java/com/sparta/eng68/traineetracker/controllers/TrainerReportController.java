@@ -91,7 +91,7 @@ public class TrainerReportController {
         return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_FEEDBACK_FORM_PAGE), modelMap);
     }
 
-    @GetMapping("/weeklyReportsTrainer")
+    @PostMapping("/weeklyReportsTrainer")
     public String getTrainerWeeklyReports(@RequestParam Integer traineeId, Model model) {
         Trainee trainee = traineeService.getTraineeByID(traineeId).get();
         List<WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);

@@ -17,6 +17,10 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
+    public Optional<Course> getGroupByID(Integer id) {
+        return (Optional<Course>) courseRepository.findById(id);
+    }
+
     public Optional<Course> getCourseByID(Integer id) {
         return (Optional<Course>) courseRepository.findById(id);
     }

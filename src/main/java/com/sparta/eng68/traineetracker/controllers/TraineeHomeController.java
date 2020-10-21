@@ -49,11 +49,16 @@ public class TraineeHomeController {
         Trainee trainee = traineeService.getTraineeByUsername(principal.getName()).get();
         CourseGroup courseGroup = courseGroupService.getGroupByID(trainee.getGroupId()).get();
         Course course = courseService.getCourseByID(courseGroup.getCourseId()).get();
-        WeekReport reports = weekReportService.getPreviousWeekReportByTraineeID(trainee.getTraineeId()).get();
+        Optional<WeekReport> reports = weekReportService.getPreviousWeekReportByTraineeID(trainee.getTraineeId());
+        if (reports.isPresent()){
+            model.addAttribute("report",reports.get());
+        }
+        else {
+            model.addAttribute("report",null);
+        }
         model.addAttribute("trainee", trainee);
         model.addAttribute("courseGroup",courseGroup);
         model.addAttribute("course", course);
-        model.addAttribute("report", reports);
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
     }
 

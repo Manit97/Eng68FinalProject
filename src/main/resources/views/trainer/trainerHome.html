@@ -28,8 +28,8 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="traineeSelector">Select Trainee:</label>
-                                <select class="form-control" id="traineeSelector">
-                                    <option th:each="trainee: ${traineeList}" th:value="${trainee.traineeId}" th:text="${trainee.firstName} + ' ' + ${trainee.lastName}" th:name="traineeId">Trainee</option>
+                                <select class="form-control" id="traineeSelector" th:name="traineeId">
+                                    <option th:each="trainee: ${traineeList}" th:value="${trainee.traineeId}" th:text="${trainee.firstName} + ' ' + ${trainee.lastName}">Trainee</option>
                                 </select>
                             </div>
                             <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>

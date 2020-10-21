@@ -60,4 +60,14 @@ public class WeekReportService {
     public void updateWeekReport(WeekReport weekReport) {
         weekReportRepository.save(weekReport);
     }
+
+    public Optional<WeekReport> getPreviousWeekReportByTraineeID(Integer traineeId){
+        Trainee trainee = traineeRepository.findById(traineeId).get();
+        Integer currentWeek = courseGroupRepository.findFirstByGroupIdOrderByCurrentWeekDesc(trainee.getGroupId()).get().getCurrentWeek();
+        if (currentWeek < 2){
+            Optional<WeekReport> weekReport = Optional.empty();
+            return weekReport;
+        }
+        return weekReportRepository.findByWeekNumAndTraineeId(currentWeek - 1,traineeId);
+    }
 }

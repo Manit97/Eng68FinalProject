@@ -14,6 +14,9 @@ public class Pages {
     public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
     public static final String LOGOUT_CURRENT_USER = "/perform_logout";
     public static final String CHANGE_PASSWORD = "/login/passwordChanger";
+    public static final String RECOVER_PASSWORD = "/login/recoverPassword";
+    public static final String PASSWORD_SENT = "/login/passwordSent";
+    public static final String USER_NOT_FOUND = "/login/userNotFound";
 
     //TRAINEE =======================================================================================
     public static final String TRAINEE_HOME = "/trainee/traineeHome";

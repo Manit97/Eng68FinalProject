@@ -10,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Service
 public class UserService {
 
@@ -67,6 +70,10 @@ public class UserService {
         }else{
             return false;
         }
+    }
+
+    public void deleteUserByUsername(String username) {
+        userRepository.deleteByUsername(username);
     }
 
 }

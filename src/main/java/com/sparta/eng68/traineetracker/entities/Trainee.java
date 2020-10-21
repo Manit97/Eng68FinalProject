@@ -11,7 +11,7 @@ public class Trainee {
     private String username;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trainee_id")
     public Integer getTraineeId() {
         return traineeId;

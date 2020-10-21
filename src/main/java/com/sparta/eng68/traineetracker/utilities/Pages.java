@@ -26,6 +26,7 @@ public class Pages {
     public static final String TRAINER_HOME = "/trainer/trainerHome";
     public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
     public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
+    public static final String TRAINER_NEW_USER_ALREADY_EXISTS = "/trainer/newUserAlreadyExists";
     public static final String TRAINER_FEEDBACK_FORM_PAGE = "/trainer/trainerFeedbackForm";
     public static final String GROUPS = "/trainer/groups";
     public static final String GROUPS_SUBMIT_CHANGE = "/trainer/groupsSubmit";

@@ -40,4 +40,12 @@ public class TraineeService {
         List<Trainee> trainees = traineeRepository.findAllByGroupId(group_id);
         return trainees;
     }
+
+    public void addNewTrainee(Trainee trainee) {
+        traineeRepository.save(trainee);
+    }
+
+    public void deleteTraineeByID(Integer traineeId) {
+        traineeRepository.deleteById(traineeId);
+    }
 }

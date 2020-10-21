@@ -27,24 +27,62 @@
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-                                <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Add User</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">Create and Delete Trainees</h1>
                                         </div>
-                                        <form class="form-signin" th:action="@{/addNewUser}" method="POST">
-                                            <h1 class="h3 mb-3 font-weight-normal">Please enter a UserName for the new User</h1>
+                                        <form class="form-signin" th:action="@{/addNewUser}" th:object="${newUserForm}" method="POST">
+                                            <h1 class="h3 mb-3 font-weight-normal">Create new Trainee</h1>
                                             <div class="form-group" style="text-align: left">
-                                                <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required="">
+                                                <table>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>First Name</td>
+                                                        <td>Last Name</td>
+                                                        <td>Class</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input class="form-control" type="text" th:field="*{email}" required>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" type="text" th:field="*{firstName}" required>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" type="text" th:field="*{lastName}" required>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" th:field="*{groupId}" required>
+                                                                <option value=""> -- </option>
+                                                                <option th:each="group : ${allGroups}"
+                                                                        th:value="${group.groupId}"
+                                                                        th:text="${group.groupName}"/>
+                                                                </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                             <br/>
                                             <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">Submit</button>
                                         </form>
+                                        <h1 class="h3 mb-3 font-weight-normal">Delete Trainee</h1>
+                                        <form th:action="@{/deleteTrainee}" method="post">
+                                            <tr>Trainee</tr>
+                                            <tr>
+                                                <select class="form-control" name="traineeId" required>
+                                                    <option value=""> -- </option>
+                                                    <option th:each="trainee : ${allTrainees}"
+                                                            th:value="${trainee.traineeId}"
+                                                            th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"/>
+                                                </select>
+                                            </tr>
+                                            <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">Delete Selected Trainee</button>
+                                        </form>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 d-none d-lg-block" style="padding-top: 25px">
-                                    <img src="images/adduser2.png" style="width: 100%">
-                                </div>
+
+<!--                                <div class="col-lg-6 d-none d-lg-block" style="padding-top: 25px">-->
+<!--                                    <img src="images/adduser2.png" style="width: 100%">-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>

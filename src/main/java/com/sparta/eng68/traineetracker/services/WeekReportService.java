@@ -20,7 +20,7 @@ public class WeekReportService {
 
     @Autowired
     public WeekReportService(WeekReportRepository weekReportRepository, CourseGroupRepository courseGroupRepository,
-            TraineeRepository traineeRepository) {
+                             TraineeRepository traineeRepository) {
         this.weekReportRepository = weekReportRepository;
         this.courseGroupRepository = courseGroupRepository;
         this.traineeRepository = traineeRepository;
@@ -40,7 +40,7 @@ public class WeekReportService {
 
 
     public List<WeekReport> getReportsByTraineeID(Integer traineeId) {
-        return weekReportRepository.findByTraineeId(traineeId);
+        return weekReportRepository.findByTraineeIdOrderByWeekNumAsc(traineeId);
     }
 
     public void createReports(List<WeekReport> weekReports) {
@@ -55,6 +55,10 @@ public class WeekReportService {
         Optional<WeekReport> weekReport = weekReportRepository.findFirstByWeekNumAndTraineeId(currentWeek, traineeId);
 
         return weekReport;
+    }
+
+    public Optional<WeekReport> getWeekReportByTraineeIdAndWeekNum(Integer traineeId, Integer weekNum) {
+        return weekReportRepository.findByWeekNumAndTraineeId(traineeId, weekNum);
     }
 
     public void updateWeekReport(WeekReport weekReport) {

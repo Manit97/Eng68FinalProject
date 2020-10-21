@@ -1,6 +1,7 @@
 package com.sparta.eng68.traineetracker.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Trainee {
@@ -11,7 +12,7 @@ public class Trainee {
     private String username;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trainee_id")
     public Integer getTraineeId() {
         return traineeId;

@@ -14,6 +14,9 @@ public class Pages {
     public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
     public static final String LOGOUT_CURRENT_USER = "/perform_logout";
     public static final String CHANGE_PASSWORD = "/login/passwordChanger";
+    public static final String RECOVER_PASSWORD = "/login/recoverPassword";
+    public static final String PASSWORD_SENT = "/login/passwordSent";
+    public static final String USER_NOT_FOUND = "/login/userNotFound";
 
     //TRAINEE =======================================================================================
     public static final String TRAINEE_HOME = "/trainee/traineeHome";
@@ -26,7 +29,11 @@ public class Pages {
     public static final String TRAINER_HOME = "/trainer/trainerHome";
     public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
     public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
+    public static final String TRAINER_NEW_USER_ALREADY_EXISTS = "/trainer/newUserAlreadyExists";
     public static final String TRAINER_FEEDBACK_FORM_PAGE = "/trainer/trainerFeedbackForm";
+    public static final String TRAINER_REPORT = "/trainer/trainerReport";
+    public static final String TRAINER_FEEDBACK_FORM_REDIRECT = "/trainerFeedbackForm";
+
     public static final String GROUPS = "/trainer/groups";
     public static final String GROUPS_SUBMIT_CHANGE = "/trainer/groupsSubmit";
     public static final String ADD_WEEKS = "/trainer/newWeekPage";

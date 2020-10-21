@@ -19,44 +19,123 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Trainer Feedback Form</h1>
+            <h1 class="h3 mb-0 text-gray-800" th:text="${trainee.firstName} + ' ' + ${trainee.lastName} + ' Week ' + ${trainerFeedback.weekNum} + ' Feedback Report'">Trainer Feedback Form</h1>
 
         </div>
     </div>
 
-    <form id="form1" th:action="@{/trainerFeebackForm}" th:object="${weekReport}">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <td></td>
-            <th scope="col">Trainee Feedback</th>
-            <th scope="col">Trainer Feedback</th>
-        </tr>
+    <div class="container-sm">
+        <form th:action="@{/trainerUpdateReport}" method="post">
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Trainee Feedback</th>
+                        <th>Trainer Feedback</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Stop</th>
+                        <td><textarea readonly type="input" name="stopTrainee" rows="5" th:text="${trainerFeedback.stopTrainee}"></textarea></td>
+                        <td><textarea type="input" name="stopTrainer" rows="5" th:text="${trainerFeedback.stopTrainer}"></textarea></td>
 
-        <tr>
-            <th scope="row">Stop</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true' ><input type="text" name="trainerStop" th:value="${weekReport.stopTrainer}" th:field="*{stopTrainer}" /></td>
-        </tr>
-        <tr>
-            <th scope="row">Start</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td contenteditable='true'>TRAINER TRAINER TRAINER </td>
-        </tr>
-        <tr>
-            <th scope="row">Continue</th>
-            <td>Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee. Words of a trainee.</td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">Trainer Comments</th>
-            <td colspan="2"></td>
-        </tr>
-        </thead>
-    </table>
-        <input type="submit" name="submitButton" value="Submit">
-    </form>
-
+                        </th>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Start</th>
+                        <td> <textarea readonly type="input" name="startTrainee" rows="5" th:text="${trainerFeedback.startTrainee}"></textarea></td>
+                        <td><textarea type="input" name="startTrainer" rows="5" th:text="${trainerFeedback.startTrainer}"></textarea></td>
+                        </th>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Continue</th>
+                        <td> <textarea readonly type="input" name="continueTrainee" rows="5" th:text="${trainerFeedback.continueTrainee}"></textarea></td>
+                        <td><textarea type="input" name="continueTrainer" rows="5" th:text="${trainerFeedback.continueTrainer}"></textarea></td>
+                        </th>
+                    <tr>
+                        <th scope="row">Trainer Comments</th>
+                        <td colspan="2"> <textarea cols="100" type="input" name="trainerComments" rows="5" th:text="${trainerFeedback.trainerComments}"></textarea></td>
+                        </th>
+                    </tr></tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <div class="col">
+                <h5>Assign Grades</h5>
+                <div class="row">
+                    <h6>Technical Skills</h6>
+                </div>
+                <div class="row">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-success active">
+                            <input type="radio" name="trainerTechGrade" id="techA" autocomplete="off" th:checked="${trainerFeedback.technicalGradeTrainer == 'A'}" th:value="A"> A
+                        </label>
+                        <label class="btn btn-success">
+                            <input type="radio" name="trainerTechGrade" id="techB" autocomplete="off" th:checked="${trainerFeedback.technicalGradeTrainer == 'B'}" th:value="B"> B
+                        </label>
+                        <label class="btn btn-warning amber">
+                            <input type="radio" name="trainerTechGrade" id="techC" autocomplete="off" th:checked="${trainerFeedback.technicalGradeTrainer == 'C'}" th:value="C"> C
+                        </label>
+                        <label class="btn btn-danger crimson">
+                            <input type="radio" name="trainerTechGrade" id="techD" autocomplete="off" th:checked="${trainerFeedback.technicalGradeTrainer == 'D'}" th:value="D"> D
+                        </label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <h6>Consultant Skills</h6>
+                </div>
+                <div class="row">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-success active">
+                            <input type="radio" name="trainerConsulGrade" id="consulA" autocomplete="off" th:checked="${trainerFeedback.consultantGradeTrainer == 'A'}" th:value="A"> A
+                        </label>
+                        <label class="btn btn-success">
+                            <input type="radio" name="trainerConsulGrade" id="consulB" autocomplete="off" th:checked="${trainerFeedback.consultantGradeTrainer == 'B'}" th:value="B"> B
+                        </label>
+                        <label class="btn btn-warning">
+                            <input type="radio" name="trainerConsulGrade" id="consulC" autocomplete="off" th:checked="${trainerFeedback.consultantGradeTrainer == 'C'}" th:value="C"> C
+                        </label>
+                        <label class="btn btn-danger">
+                            <input type="radio" name="trainerConsulGrade" id="consulD" autocomplete="off" th:checked="${trainerFeedback.consultantGradeTrainer == 'D'}" th:value="D"> D
+                        </label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <h6>Overall Grade</h6>
+                </div>
+                <div class="row">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-success active">
+                            <input type="radio" name="trainerOverallGrade" id="overallA" autocomplete="off" th:checked="${trainerFeedback.overallGradeTrainer == 'A'}" th:value="A"> A
+                        </label>
+                        <label class="btn btn-success">
+                            <input type="radio" name="trainerOverallGrade" id="overallB" autocomplete="off" th:checked="${trainerFeedback.overallGradeTrainer == 'B'}" th:value="B"> B
+                        </label>
+                        <label class="btn btn-warning amber">
+                            <input type="radio" name="trainerOverallGrade" id="overallC" autocomplete="off" th:checked="${trainerFeedback.overallGradeTrainer == 'C'}" th:value="C"> C
+                        </label>
+                        <label class="btn btn-danger crimson">
+                            <input type="radio" name="trainerOverallGrade" id="overallD" autocomplete="off" th:checked="${trainerFeedback.overallGradeTrainer == 'D'}" th:value="D"> D
+                        </label>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div class="col">
+                <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <input class="invisible-input" type="number" name="reportId" th:value="${trainerFeedback.reportId}"/>
+        </form>
+    </div>
 
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

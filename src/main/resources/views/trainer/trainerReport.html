@@ -169,8 +169,12 @@
                                                 </div>
                                             </div>
                                             <br/>
-                                            <form th:action="@{/traineeFeedback}">
-                                                <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit" th:if="${now.isBefore(report.getDeadline())}">
+                                            <div th:switch="${report.getTraineeSubmittedFlag()}">
+                                                <p th:case="${1}">Submitted</p>
+                                                <p th:case="${0}">Not Submitted</p>
+                                            </div>
+                                            <form th:action="@{/trainerFeedback}">
+                                                <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">
                                                     Edit Report
                                                 </button>
                                             </form>

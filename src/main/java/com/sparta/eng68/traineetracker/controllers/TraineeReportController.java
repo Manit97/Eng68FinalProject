@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -31,10 +33,13 @@ public class TraineeReportController {
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_GUIDE);
     }
 
+
     @GetMapping("/weeklyReports")
-    public String getTraineeWeeklyReports(@RequestParam Integer id, Model model) {
-        Trainee trainee = traineeService.getTraineeByID(id).get();
-        List<WeekReport> reports = weekReportService.getReportsByTraineeID(id);
+    public String getTraineeWeeklyReports(Model model, Principal principal) {
+        Integer traineeId = traineeService.getTraineeByUsername(principal.getName()).get().getTraineeId();
+        Trainee trainee = traineeService.getTraineeByID(traineeId).get();
+        List<WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);
+        Collections.reverse(reports);
         model.addAttribute("trainee", trainee);
         model.addAttribute("reports", reports);
         model.addAttribute("now", LocalDateTime.now());

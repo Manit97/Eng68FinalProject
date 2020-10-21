@@ -1,6 +1,11 @@
 package com.sparta.eng68.traineetracker.controllers;
 
+import com.sparta.eng68.traineetracker.entities.Course;
+import com.sparta.eng68.traineetracker.entities.CourseGroup;
+import com.sparta.eng68.traineetracker.entities.Trainee;
 import com.sparta.eng68.traineetracker.entities.WeekReport;
+import com.sparta.eng68.traineetracker.services.CourseGroupService;
+import com.sparta.eng68.traineetracker.services.CourseService;
 import com.sparta.eng68.traineetracker.services.TraineeService;
 import com.sparta.eng68.traineetracker.services.WeekReportService;
 import com.sparta.eng68.traineetracker.utilities.Pages;
@@ -10,27 +15,45 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TraineeHomeController {
 
     private final WeekReportService weekReportService;
     private final TraineeService traineeService;
+    private final CourseGroupService courseGroupService;
+    private final CourseService courseService;
 
     @Autowired
-    public TraineeHomeController(WeekReportService weekReportService, TraineeService traineeService) {
+    public TraineeHomeController(WeekReportService weekReportService, TraineeService traineeService, CourseGroupService courseGroupService, CourseService courseService) {
         this.weekReportService = weekReportService;
         this.traineeService = traineeService;
+        this.courseGroupService = courseGroupService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/traineeHome")
-    public String getTraineeHome() {
+    public String getTrainerForTraineeHomeGrades(Model model, Principal principal) {
+        Trainee trainee = traineeService.getTraineeByUsername(principal.getName()).get();
+        CourseGroup courseGroup = courseGroupService.getGroupByID(trainee.getGroupId()).get();
+        Course course = courseService.getCourseByID(courseGroup.getCourseId()).get();
+        WeekReport reports = weekReportService.getPreviousWeekReportByTraineeID(trainee.getTraineeId()).get();
+        model.addAttribute("trainee", trainee);
+        model.addAttribute("courseGroup",courseGroup);
+        model.addAttribute("course", course);
+        model.addAttribute("report", reports);
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
     }
 

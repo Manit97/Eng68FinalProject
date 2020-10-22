@@ -139,13 +139,13 @@
                     <div class="text-center align-items-center justify-content-between mb-4">
                         <div class="row">
                             <div class="col">
-                                <form th:action="@{/weeklyReports}">
-                                    <button class="btn" style="color: #E23561">View Reports</button>
+                                <form th:action="@{/trainee/report}" method="get">
+                                    <button class="btn" type="submit" style="color: #E23561">View Reports</button>
                                 </form>
                             </div>
                             <div class="col">
-                                <form th:action="@{/traineeFeedback}">
-                                    <button class="btn" style="color: #E23561">Edit Report</button>
+                                <form th:action="@{/traineeRecentReport}"  method="post">
+                                    <button class="btn" type="submit" name="reportId" th:value="${report.getReportId()}" style="color: #E23561">Edit Report</button>
                                 </form>
                             </div>
                         </div>

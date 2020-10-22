@@ -51,7 +51,7 @@ public class UserController {
     public ModelAndView addNewUser(@ModelAttribute NewUserForm newUserForm, ModelMap modelMap) {
 
         if (userService.getUserOptional(newUserForm.getEmail()).isPresent()) {
-            return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_ALREADY_EXISTS));
+            return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_ALREADY_EXISTS_PAGE));
         }
 
         userService.addNewUser(newUserForm.getEmail());
@@ -61,15 +61,15 @@ public class UserController {
         trainee.setUsername(newUserForm.getEmail());
         trainee.setGroupId(newUserForm.getGroupId());
         traineeService.addNewTrainee(trainee);
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_REDIRECT), modelMap);
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_URL), modelMap);
     }
 
     @PostMapping("/deleteTrainee")
     public ModelAndView deleteTrainee(@RequestParam String traineeId) {
-        int traineeIdInt = Integer.parseInt(traineeId);
-        userService.deleteUserByUsername(traineeService.getTraineeByID(traineeIdInt).get().getUsername());
-        traineeService.deleteTraineeByID(traineeIdInt);
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/newUser"));
+//        int traineeIdInt = Integer.parseInt(traineeId);
+//        userService.deleteUserByUsername(traineeService.getTraineeByID(traineeIdInt).get().getUsername());
+//        traineeService.deleteTraineeByID(traineeIdInt);
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_PAGE));
     }
 
     @PostMapping("/passwordChange")
@@ -90,22 +90,22 @@ public class UserController {
     public ModelAndView getChangePasswordScreen(@ModelAttribute("error") final Object error, ModelMap modelMap){
 
         modelMap.addAttribute("showError", error);
-        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.CHANGE_PASSWORD));
+        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.CHANGE_PASSWORD_PAGE));
     }
 
     @PostMapping("/forgotPassword")
     public ModelAndView getNewPassword(@RequestParam String email, ModelMap modelMap){
         if(!(userService.hasUser(email))){
-            return new ModelAndView(Pages.accessPage(Role.ANY, Pages.USER_NOT_FOUND), modelMap);
+            return new ModelAndView(Pages.accessPage(Role.ANY, Pages.USER_NOT_FOUND_PAGE), modelMap);
         }
         userService.recoverPassword(email);
 
-        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.PASSWORD_SENT), modelMap);
+        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.PASSWORD_SENT_PAGE), modelMap);
     }
     @GetMapping("/recoverPassword")
     public ModelAndView recoverPassword(ModelMap modelMap){
         //return new ModelAndView()
-        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.RECOVER_PASSWORD), modelMap);
+        return new ModelAndView(Pages.accessPage(Role.ANY, Pages.RECOVER_PASSWORD_PAGE), modelMap);
     }
 
 }

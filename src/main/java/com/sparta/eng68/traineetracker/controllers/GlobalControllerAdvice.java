@@ -5,10 +5,15 @@ import com.sparta.eng68.traineetracker.entities.Trainer;
 import com.sparta.eng68.traineetracker.services.TraineeService;
 import com.sparta.eng68.traineetracker.services.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -25,7 +30,7 @@ public class GlobalControllerAdvice {
     }
 
     @ModelAttribute("username")
-    public String getUsername(Principal principal) {
+    public String getUsername(Principal principal, HttpServletRequest request) {
         if (principal == null) {
             return "";
         }

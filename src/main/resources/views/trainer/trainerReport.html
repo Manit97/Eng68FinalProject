@@ -173,7 +173,7 @@
                                                 <p th:case="${1}">Submitted</p>
                                                 <p th:case="${0}">Not Submitted</p>
                                             </div>
-                                            <form th:action="@{/trainerFeedbackForm}" method="POST">
+                                            <form th:action="@{/trainer/reportTraineeWeekProcessing}" method="POST">
                                                 <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit" th:name="reportId" th:value="${report.getReportId()}">
                                                     Edit Report
                                                 </button>

@@ -38,14 +38,14 @@ public class ManagementController {
         model.addAttribute("allGroups", courseGroupService.getAllCourseGroups());
         model.addAttribute("allCourses", courseService.getAllCourses());
         model.addAttribute("newClass", new CourseGroup());
-        return Pages.accessPage(Role.TRAINER, Pages.GROUPS);
+        return Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_PAGE);
     }
 
     @PostMapping("/createGroup")
     public ModelAndView createGroup(@ModelAttribute CourseGroup newClass, ModelMap model) {
         newClass.setCurrentWeek(0);
         courseGroupService.saveNewGroup(newClass);
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_PAGE));
     }
 
 
@@ -55,7 +55,7 @@ public class ManagementController {
         Trainee trainee = traineeService.changeTraineeCourseGroupByID(assignGroupForm.getTraineeId(), assignGroupForm.getGroupId());
         model.addAttribute("trainee", trainee);
         model.addAttribute("group", courseGroupService.getGroupByID(trainee.getGroupId()).get());
-        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.GROUPS_SUBMIT_CHANGE));
+        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_SUBMIT_PAGE));
     }
 
 

@@ -58,7 +58,7 @@ public class WeekReportService {
     }
 
     public Optional<WeekReport> getWeekReportByTraineeIdAndWeekNum(Integer traineeId, Integer weekNum) {
-        return weekReportRepository.findByWeekNumAndTraineeId(traineeId, weekNum);
+        return weekReportRepository.findByWeekNumAndTraineeId(weekNum, traineeId);
     }
 
     public void updateWeekReport(WeekReport weekReport) {

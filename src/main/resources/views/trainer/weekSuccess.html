@@ -26,15 +26,16 @@
                 <div class="card-body p-0 text-center align-items-center justify-content-between">
                     <!-- Nested Row within Card Body -->
                     <h1>Successfully added new weeks for this group!</h1>
+                    <h1 th:text="'Week has changed from Week ' + ${previousWeek} + ' to Week ' + ${currentWeek} "></h1>
                     <br/>
                     <div class="row">
                         <div class="col">
-                            <form th:action = "@{/trainerHome}">
+                            <form th:action = "@{/trainer/home}">
                                 <button class="btn btn-primary" type="submit">Dashboard</button>
                             </form>
                         </div>
                         <div class="col">
-                            <form th:action = "@{/addNewWeeks}">
+                            <form th:action = "@{/trainer/newWeek}">
                                 <button class="btn btn-primary" type="submit">Add more weeks</button>
                             </form>
                         </div>

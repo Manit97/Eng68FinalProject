@@ -31,7 +31,7 @@ public class ManagementController {
         this.courseService = courseService;
     }
 
-    @GetMapping("/groups")
+    @GetMapping("/trainer/group")
     public String getTrainerGroupView(Model model) {
         model.addAttribute("assignGroupForm", new AssignGroupForm());
         model.addAttribute("allTrainees", traineeService.getAllTrainees());
@@ -41,22 +41,31 @@ public class ManagementController {
         return Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_PAGE);
     }
 
-    @PostMapping("/createGroup")
+    @PostMapping("/trainer/createGroup")
     public ModelAndView createGroup(@ModelAttribute CourseGroup newClass, ModelMap model) {
         newClass.setCurrentWeek(0);
         courseGroupService.saveNewGroup(newClass);
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_PAGE));
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_URL));
     }
 
+    @GetMapping("/trainer/modifyGroup")
+    public ModelAndView getGroupChange(@ModelAttribute AssignGroupForm assignGroupForm, ModelMap modelMap) {
 
-    @PostMapping("/submitGroupChange")
-    public ModelAndView postGroupChange(@ModelAttribute AssignGroupForm assignGroupForm, ModelMap model) {
+        modelMap.addAttribute("trainee", new Trainee());
+        modelMap.addAttribute("group", new CourseGroup());
+
+        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_SUBMIT_PAGE), modelMap);
+
+    }
+
+    @PostMapping("/trainer/modifyGroup")
+    public ModelAndView postGroupChange(@ModelAttribute AssignGroupForm assignGroupForm, ModelMap modelMap) {
 
         Trainee trainee = traineeService.changeTraineeCourseGroupByID(assignGroupForm.getTraineeId(), assignGroupForm.getGroupId());
-        model.addAttribute("trainee", trainee);
-        model.addAttribute("group", courseGroupService.getGroupByID(trainee.getGroupId()).get());
+        modelMap.addAttribute("trainee", trainee);
+        modelMap.addAttribute("group", courseGroupService.getGroupByID(trainee.getGroupId()).get());
       
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
+        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_SUBMIT_PAGE), modelMap);
 
     }
 

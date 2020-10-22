@@ -33,7 +33,7 @@ public class UserController {
         this.weekReportService = weekReportService;
     }
 
-    @GetMapping("/passwordInitialiser")
+    @GetMapping("/trainee/tempPassword")
     public ModelAndView getPasswordInitialiser(ModelMap modelMap) {
 
         return new ModelAndView(Pages.accessPage(Role.FIRST_TIME_USER, Pages.FIRST_PASSWORD_PAGE), modelMap);
@@ -50,7 +50,7 @@ public class UserController {
         return new ModelAndView("redirect:"+Pages.accessPage(Role.ANY, Pages.LOGOUT_CURRENT_USER), modelMap);
     }
 
-    @PostMapping("/addNewUser")
+    @PostMapping("/trainer/addNewUser")
     public ModelAndView addNewUser(@ModelAttribute NewUserForm newUserForm, ModelMap modelMap) {
 
         if (userService.getUserOptional(newUserForm.getEmail()).isPresent()) {
@@ -67,14 +67,14 @@ public class UserController {
         return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_URL), modelMap);
     }
 
-    @PostMapping("/deleteTrainee")
+    @PostMapping("/trainer/deleteTrainee")
     public ModelAndView deleteTrainee(@RequestParam String traineeId) {
         int traineeIdInt = Integer.parseInt(traineeId);
         userService.deleteUserByUsername(traineeService.getTraineeByID(traineeIdInt).get().getUsername());
         weekReportService.deleteReportsByTraineeID(traineeIdInt);
         traineeService.deleteTraineeByID(traineeIdInt);
 
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/newUser"));
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_URL));
     }
 
     @PostMapping("/passwordChange")

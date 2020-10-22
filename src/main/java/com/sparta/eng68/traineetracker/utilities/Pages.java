@@ -43,11 +43,11 @@ public class Pages {
     public static final String TRAINER_REPORT_PAGE = "/trainer/trainerReport";
     public static final String TRAINER_REPORT_URL = "/trainer/report";
     public static final String TRAINER_GROUPS_PAGE = "/trainer/groups";
-    public static final String TRAINER_GROUPS_URL = "/trainer/groups";
+    public static final String TRAINER_GROUPS_URL = "/trainer/group";
     public static final String TRAINER_GROUPS_SUBMIT_PAGE = "/trainer/groupsSubmit";
     public static final String TRAINER_GROUPS_SUBMIT_URL = "/trainer/groupsSubmit";
     public static final String TRAINER_ADD_WEEK_PAGE = "/trainer/newWeekPage";
-    public static final String TRAINER_ADD_WEEK_URL = "/trainer/newWeekPage";
+    public static final String TRAINER_ADD_WEEK_URL = "/trainer/addNewWeek";
     public static final String TRAINER_WEEK_SUCCESS_PAGE ="/trainer/weekSuccess";
     public static final String TRAINER_WEEK_SUCCESS_URL ="/trainer/weekSuccess";
 

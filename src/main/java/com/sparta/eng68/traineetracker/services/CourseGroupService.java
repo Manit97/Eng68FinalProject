@@ -38,6 +38,9 @@ public class CourseGroupService {
 
     public int getWeekByGroupId(int id) {
         Optional<CourseGroup> courseGroup =courseGroupRepository.findById(id);
+        if (courseGroup.isEmpty()) {
+            return Integer.MIN_VALUE;
+        }
         CourseGroup courseGroup1 = courseGroup.get();
         int week_num = courseGroup1.getCurrentWeek();
         return week_num;

@@ -76,7 +76,7 @@ public class TraineeHomeController {
         weekReport.setMostRecentEdit(LocalDateTime.now());
 
         weekReportService.updateWeekReport(weekReport);
-        return Pages.accessPage(Role.TRAINEE, "redirect:"+Pages.TRAINEE_REPORT_PAGE);
+        return Pages.accessPage(Role.TRAINEE, "redirect:"+Pages.TRAINEE_HOME_URL);
     }
 
 }

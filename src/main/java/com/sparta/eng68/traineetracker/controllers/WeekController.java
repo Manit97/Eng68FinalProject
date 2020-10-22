@@ -65,11 +65,14 @@ public class WeekController {
 //        weekReportService.createReports(weekReports);
 //        return new ModelAndView(Pages.accessPage(Role.TRAINER,Pages.TRAINER_HOME), modelMap);
 //    }
-    @PostMapping("/newWeek")
+    @PostMapping("/trainer/addNewWeek")
     public ModelAndView getNewWeek(@RequestParam String groupId, ModelMap modelMap){
         int groupID = Integer.parseInt(groupId);
         courseGroupService.incrementWeek(groupID);
         int week_num = courseGroupService.getWeekByGroupId(groupID);
+        if (week_num == Integer.MIN_VALUE) {
+            return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_ADD_WEEK_URL), modelMap);
+        }
         List<Trainee> trainees = traineeService.getTraineesByGroupId(groupID);
         List<WeekReport> weekReports = new ArrayList<>();
         for(Trainee trainee: trainees){
@@ -109,11 +112,13 @@ public class WeekController {
             weekReports.add(weekReport);
         }
         weekReportService.createReports(weekReports);
+        modelMap.addAttribute("currentWeek", Integer.toString(week_num));
+        modelMap.addAttribute("previousWeek", Integer.toString(week_num-1));
         return new ModelAndView(Pages.accessPage(Role.TRAINER,Pages.TRAINER_WEEK_SUCCESS_PAGE), modelMap);
     }
 
 
-    @GetMapping("/addNewWeeks")
+    @GetMapping("/trainer/newWeek")
     public ModelAndView newWeekPage(ModelMap modelMap){
         List<CourseGroup> groups = courseGroupService.getAllCourseGroups();
         modelMap.addAttribute("allGroups", groups);

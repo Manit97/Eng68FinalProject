@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Trainee Feedback Form</h1>
+            <h1 class="h3 mb-0" style="color: #E23561">Trainee Feedback Form</h1>
         </div>
         <div class="container-sm">
             <form th:action="@{/traineeUpdateReport}" method="post">
@@ -69,10 +69,10 @@
                             <label class="btn btn-success">
                                 <input type="radio" name="traineeTechGrade" id="techB" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'B'}" th:value="B"> B
                             </label>
-                            <label class="btn btn-warning amber">
+                            <label class="btn btn-warning">
                                 <input type="radio" name="traineeTechGrade" id="techC" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'C'}" th:value="C"> C
                             </label>
-                            <label class="btn btn-danger crimson">
+                            <label class="btn btn-danger">
                                 <input type="radio" name="traineeTechGrade" id="techD" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'D'}" th:value="D"> D
                             </label>
                         </div>

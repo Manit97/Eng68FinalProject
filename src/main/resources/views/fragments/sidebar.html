@@ -25,7 +25,10 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/trainee/home}">
+            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINEE') == true}" th:href="@{/trainee/home}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINER') == true}" th:href="@{/trainer/home}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>

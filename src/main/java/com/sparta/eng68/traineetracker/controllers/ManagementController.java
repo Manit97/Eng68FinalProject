@@ -55,7 +55,9 @@ public class ManagementController {
         Trainee trainee = traineeService.changeTraineeCourseGroupByID(assignGroupForm.getTraineeId(), assignGroupForm.getGroupId());
         model.addAttribute("trainee", trainee);
         model.addAttribute("group", courseGroupService.getGroupByID(trainee.getGroupId()).get());
-        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_GROUPS_SUBMIT_PAGE));
+      
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/groups"));
+
     }
 
 

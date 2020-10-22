@@ -3,6 +3,7 @@ package com.sparta.eng68.traineetracker.controllers;
 import com.sparta.eng68.traineetracker.entities.Trainee;
 import com.sparta.eng68.traineetracker.services.TraineeService;
 import com.sparta.eng68.traineetracker.services.UserService;
+import com.sparta.eng68.traineetracker.services.WeekReportService;
 import com.sparta.eng68.traineetracker.utilities.NewUserForm;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
@@ -23,11 +24,13 @@ public class UserController {
 
     private final UserService userService;
     private final TraineeService traineeService;
+    public final WeekReportService weekReportService;
 
     @Autowired
-    public UserController(UserService userService, TraineeService traineeService) {
+    public UserController(UserService userService, TraineeService traineeService, WeekReportService weekReportService) {
         this.userService = userService;
         this.traineeService = traineeService;
+        this.weekReportService = weekReportService;
     }
 
     @GetMapping("/passwordInitialiser")
@@ -66,10 +69,12 @@ public class UserController {
 
     @PostMapping("/deleteTrainee")
     public ModelAndView deleteTrainee(@RequestParam String traineeId) {
-//        int traineeIdInt = Integer.parseInt(traineeId);
-//        userService.deleteUserByUsername(traineeService.getTraineeByID(traineeIdInt).get().getUsername());
-//        traineeService.deleteTraineeByID(traineeIdInt);
-        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, Pages.TRAINER_NEW_USER_PAGE));
+        int traineeIdInt = Integer.parseInt(traineeId);
+        userService.deleteUserByUsername(traineeService.getTraineeByID(traineeIdInt).get().getUsername());
+        weekReportService.deleteReportsByTraineeID(traineeIdInt);
+        traineeService.deleteTraineeByID(traineeIdInt);
+
+        return new ModelAndView("redirect:"+Pages.accessPage(Role.TRAINER, "/newUser"));
     }
 
     @PostMapping("/passwordChange")

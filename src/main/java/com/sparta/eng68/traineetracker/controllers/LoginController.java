@@ -18,7 +18,7 @@ public class LoginController {
 
     @GetMapping("/")
     public String getSimpleRedirect() {
-        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE_REDIRECT);
+        return "redirect:"+Pages.accessPage(Role.ANY, Pages.LOGIN_PAGE_URL);
     }
 
 
@@ -40,7 +40,7 @@ public class LoginController {
 
         redirectAttributes.addFlashAttribute("loginResult", "true");
 
-        return new ModelAndView("redirect:/login", modelMap);
+        return new ModelAndView("redirect:/"+Pages.LOGIN_PAGE_URL, modelMap);
     }
 
     @PostMapping
@@ -50,7 +50,7 @@ public class LoginController {
 
 
 
-        return new ModelAndView("redirect:/login", modelMap);
+        return new ModelAndView("redirect:/"+Pages.LOGIN_PAGE_URL, modelMap);
     }
 
 }

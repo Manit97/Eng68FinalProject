@@ -25,10 +25,10 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINEE') == true}" th:href="@{/traineeHome}">
+            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINEE') == true}" th:href="@{/trainee/home}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
-            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINER') == true}" th:href="@{/trainerHome}">
+            <a class="nav-link" th:if="${#httpServletRequest.isUserInRole('TRAINER') == true}" th:href="@{/trainer/home}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -46,8 +46,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">View Info</h6>
-                    <a class="collapse-item" th:href="@{/consultancy}">Consultancy Skills</a>
-                    <a class="collapse-item" th:href="@{/traineeGuide}">Trainee Guide</a>
+                    <a class="collapse-item" th:href="@{/trainee/consultancy}">Consultancy Skills</a>
+                    <a class="collapse-item" th:href="@{/trainee/guide}" >Trainee Guide</a>
                 </div>
             </div>
         </li>
@@ -63,8 +63,8 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Select an Option:</h6>
-                    <a class="collapse-item" th:href="@{/weeklyReports}">Reports</a>
-                    <a class="collapse-item" th:href="@{/traineeFeedback}">Feedback Form</a>
+                    <a class="collapse-item" th:href="@{/trainee/report}">Reports</a>
+                    <a class="collapse-item" th:href="@{/traineeRecentReport}">Feedback Form</a>
                 </div>
             </div>
         </li>

@@ -16,16 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import org.springframework.web.bind.annotation.RequestParam;
 
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -44,7 +37,7 @@ public class TraineeHomeController {
         this.courseService = courseService;
     }
 
-    @GetMapping("/traineeHome")
+    @GetMapping("/trainee/home")
     public String getTrainerForTraineeHomeGrades(Model model, Principal principal) {
         Trainee trainee = traineeService.getTraineeByUsername(principal.getName()).get();
         CourseGroup courseGroup = courseGroupService.getGroupByID(trainee.getGroupId()).get();
@@ -59,17 +52,12 @@ public class TraineeHomeController {
         model.addAttribute("trainee", trainee);
         model.addAttribute("courseGroup",courseGroup);
         model.addAttribute("course", course);
-        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME);
+        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME_PAGE);
     }
 
-    @GetMapping("/traineeFeedback")
-    public String getTraineeFeedbackForm(Model model, Principal principal) {
-        Integer traineeId = traineeService.getTraineeByUsername(principal.getName()).get().getTraineeId();
-        model.addAttribute("traineeFeedback", weekReportService.getCurrentWeekReportByTraineeID(traineeId).get());
-        return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_FEEDBACK_FORM_PAGE);
-    }
 
-    @PostMapping("/traineeUpdateReport")
+
+    @PostMapping("/trainee/updateReport")
     public String submitTraineeFeedbackForm(Integer reportId, String stopTrainee, String startTrainee,
                                             String continueTrainee, String traineeConsulGrade,
                                             String traineeTechGrade){
@@ -88,7 +76,7 @@ public class TraineeHomeController {
         weekReport.setMostRecentEdit(LocalDateTime.now());
 
         weekReportService.updateWeekReport(weekReport);
-        return Pages.accessPage(Role.TRAINEE, "redirect:"+Pages.TRAINEE_FEEDBACK_FORM_PAGE_REDIRECT);
+        return Pages.accessPage(Role.TRAINEE, "redirect:"+Pages.TRAINEE_REPORT_PAGE);
     }
 
 }

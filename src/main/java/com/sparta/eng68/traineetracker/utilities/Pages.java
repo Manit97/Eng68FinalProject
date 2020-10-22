@@ -10,34 +10,46 @@ public class Pages {
     //LOGIN =========================================================================================
     public static final String HOME_PAGE = "/home";
     public static final String LOGIN_PAGE = "/login/login";
-    public static final String LOGIN_PAGE_REDIRECT = "/login";
+    public static final String LOGIN_PAGE_URL = "/login";
+    public static final String LOGIN_FAILURE_URL = "/login";
+    public static final String USER_NOT_FOUND_PAGE = "/login/userNotFound";
     public static final String FIRST_PASSWORD_PAGE = "/trainee/firstTimeLogin";
+    public static final String FIRST_PASSWORD_URL = "trainee/firstPassword";
     public static final String LOGOUT_CURRENT_USER = "/perform_logout";
-    public static final String CHANGE_PASSWORD = "/login/passwordChanger";
-    public static final String RECOVER_PASSWORD = "/login/recoverPassword";
-    public static final String PASSWORD_SENT = "/login/passwordSent";
-    public static final String USER_NOT_FOUND = "/login/userNotFound";
+    public static final String CHANGE_PASSWORD_PAGE = "/login/passwordChanger";
+    public static final String RECOVER_PASSWORD_PAGE = "/login/recoverPassword";
+    public static final String PASSWORD_SENT_PAGE = "/login/passwordSent";
+    public static final String TRAINEE_CHANGE_PASSWORD_URL = "/trainee/changePassword";
+    public static final String TRAINER_CHANGE_PASSWORD_URL = "/trainer/changePassword";
+    public static final String RECOVER_PASSWORD_URL = "/login/recoverPassword";
 
     //TRAINEE =======================================================================================
-    public static final String TRAINEE_HOME = "/trainee/traineeHome";
-    public static final String TRAINEE_GUIDE = "/trainee/traineeGuide";
-    public static final String TRAINEE_REPORT = "/trainee/traineeReport";
+    public static final String TRAINEE_HOME_PAGE = "/trainee/traineeHome";
+    public static final String TRAINEE_HOME_URL = "/trainee/home";
+    public static final String TRAINEE_GUIDE_PAGE = "/trainee/traineeGuide";
+    public static final String TRAINEE_GUIDE_URL = "/trainee/guide";
+    public static final String TRAINEE_REPORT_PAGE = "/trainee/traineeReport";
+    public static final String TRAINEE_REPORT_URL = "/trainee/report";
     public static final String TRAINEE_FEEDBACK_FORM_PAGE = "/trainee/traineeForm";
-    public static final String TRAINEE_FEEDBACK_FORM_PAGE_REDIRECT = "/traineeFeedback";
 
     //TRAINER =======================================================================================
-    public static final String TRAINER_HOME = "/trainer/trainerHome";
-    public static final String TRAINER_HOME_REDIRECT = "/trainerHome";
+    public static final String TRAINER_HOME_PAGE = "/trainer/trainerHome";
+    public static final String TRAINER_HOME_URL = "/trainer/home";
     public static final String TRAINER_NEW_USER_PAGE = "/trainer/newUserForm";
-    public static final String TRAINER_NEW_USER_ALREADY_EXISTS = "/trainer/newUserAlreadyExists";
+    public static final String TRAINER_NEW_USER_URL = "/trainer/addTrainee";
+    public static final String TRAINER_NEW_USER_ALREADY_EXISTS_PAGE = "/trainer/newUserAlreadyExists";
+    public static final String TRAINER_NEW_USER_ALREADY_EXISTS_URL = "/trainer/newUserAlreadyExists";
     public static final String TRAINER_FEEDBACK_FORM_PAGE = "/trainer/trainerFeedbackForm";
-    public static final String TRAINER_REPORT = "/trainer/trainerReport";
-    public static final String TRAINER_FEEDBACK_FORM_REDIRECT = "/trainerFeedbackForm";
-
-    public static final String GROUPS = "/trainer/groups";
-    public static final String GROUPS_SUBMIT_CHANGE = "/trainer/groupsSubmit";
-    public static final String ADD_WEEKS = "/trainer/newWeekPage";
-    public static final String week_success ="/trainer/weekSuccess";
+    public static final String TRAINER_REPORT_PAGE = "/trainer/trainerReport";
+    public static final String TRAINER_REPORT_URL = "/trainer/report";
+    public static final String TRAINER_GROUPS_PAGE = "/trainer/groups";
+    public static final String TRAINER_GROUPS_URL = "/trainer/groups";
+    public static final String TRAINER_GROUPS_SUBMIT_PAGE = "/trainer/groupsSubmit";
+    public static final String TRAINER_GROUPS_SUBMIT_URL = "/trainer/groupsSubmit";
+    public static final String TRAINER_ADD_WEEK_PAGE = "/trainer/newWeekPage";
+    public static final String TRAINER_ADD_WEEK_URL = "/trainer/newWeekPage";
+    public static final String TRAINER_WEEK_SUCCESS_PAGE ="/trainer/weekSuccess";
+    public static final String TRAINER_WEEK_SUCCESS_URL ="/trainer/weekSuccess";
 
     //Any =======================================================================================
     public static final String CONSULTANCY = "/trainee/consultancy";

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 
-    @GetMapping("/consultancy")
+    @GetMapping("/trainee/consultancy")
     public String getConsultancySkills() {
         return Pages.accessPage(Role.ANY, Pages.CONSULTANCY);
     }
 
-    @GetMapping("/traineeGuide")
-    public String getTraineeGuide() { return Pages.TRAINEE_GUIDE;}
+    @GetMapping("/trainee/guide")
+    public String getTraineeGuide() { return Pages.TRAINEE_GUIDE_PAGE;}
 
     @GetMapping("/pagenotfounderror")
     public String get404() {

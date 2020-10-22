@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class WeekController {
@@ -111,7 +109,7 @@ public class WeekController {
             weekReports.add(weekReport);
         }
         weekReportService.createReports(weekReports);
-        return new ModelAndView(Pages.accessPage(Role.TRAINER,Pages.week_success), modelMap);
+        return new ModelAndView(Pages.accessPage(Role.TRAINER,Pages.TRAINER_WEEK_SUCCESS_PAGE), modelMap);
     }
 
 
@@ -120,6 +118,6 @@ public class WeekController {
         List<CourseGroup> groups = courseGroupService.getAllCourseGroups();
         modelMap.addAttribute("allGroups", groups);
         //return new ModelAndView()
-        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.ADD_WEEKS), modelMap);
+        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_ADD_WEEK_PAGE), modelMap);
     }
 }

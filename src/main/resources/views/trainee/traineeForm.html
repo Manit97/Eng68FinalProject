@@ -19,15 +19,14 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Trainee Feedback Form</h1>
+            <h1 class="h3 mb-0" style="color: #E23561">Trainee Feedback Form</h1>
         </div>
-        <div class="container-md">
-            <div class="row">
+        <div class="container-sm">
             <form th:action="@{/traineeUpdateReport}" method="post">
-
-                <div class="col">
-                <table class="table table-bordered">
-                    <thead>
+            <div class="row">
+                <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
                     <tr>
                         <th></th>
                         <th>Trainee Feedback</th>
@@ -36,21 +35,21 @@
                     <tbody>
                     <tr>
                         <th scope="row">Stop</th>
-                        <td><textarea type="input" name="stopTrainee" rows="5" th:text="${traineeFeedback.stopTrainee}"></textarea></td>
+                        <td><textarea class="feedbackFormTextArea" type="input" name="stopTrainee" th:text="${traineeFeedback.stopTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
                         <th scope="row">Start</th>
-                        <td> <textarea type="input" name="startTrainee" rows="5" th:text="${traineeFeedback.startTrainee}"></textarea></td>
+                        <td> <textarea class="feedbackFormTextArea" type="input" name="startTrainee" th:text="${traineeFeedback.startTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
                         <th scope="row">Continue</th>
-                        <td> <textarea type="input" name="continueTrainee" rows="5" th:text="${traineeFeedback.continueTrainee}"></textarea></td>
+                        <td> <textarea class="feedbackFormTextArea" type="input" name="continueTrainee" th:text="${traineeFeedback.continueTrainee}"></textarea></td>
                         </th>
                     </tr>
                     </tbody>
@@ -70,10 +69,10 @@
                             <label class="btn btn-success">
                                 <input type="radio" name="traineeTechGrade" id="techB" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'B'}" th:value="B"> B
                             </label>
-                            <label class="btn btn-warning amber">
+                            <label class="btn btn-warning">
                                 <input type="radio" name="traineeTechGrade" id="techC" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'C'}" th:value="C"> C
                             </label>
-                            <label class="btn btn-danger crimson">
+                            <label class="btn btn-danger">
                                 <input type="radio" name="traineeTechGrade" id="techD" autocomplete="off" th:checked="${traineeFeedback.technicalGradeTrainee == 'D'}" th:value="D"> D
                             </label>
                         </div>
@@ -102,8 +101,8 @@
                 <button type="submit" th:name="btnStatus" th:value="submit" class="btn btn-primary">Submit</button>
             </div>
                 <input class="invisible-input" type="number" name="reportId" th:value="${traineeFeedback.reportId}"/>
-            </form>
             </div>
+            </form>
         </div>
     </div>
 

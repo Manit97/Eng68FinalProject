@@ -43,30 +43,6 @@
 .spartaLogo{
     width: 70%;
 }
-.amber:hover{
-    background: #100e01 !important;
-}
-.crimson:hover{
-    background: #0c0101 !important;
-}
-.amber:focus{
-    background: #100e01 !important;
-}
-.crimson:focus{
-    background: #0c0101 !important;
-}
-.amber:checked{
-    background: #161101 !important;
-}
-.crimson:checked{
-    background: #1c0105 !important;
-}
-.amber:active{
-    background: #100e01 !important;
-}
-.crimson:active{
-    background: #0c0101 !important;
-}
 .invisible-input {
     visibility: hidden !important;
 }
@@ -75,5 +51,44 @@
     border-bottom: 0.25rem solid #F100B9 !important;
 }
 
+ul li {
+    color: crimson;
+}
 
+.completeState0{
+    background-color: crimson;
+}
+
+.completeState1{
+    background-color: darkseagreen;
+}
+
+.feedbackFormTextArea{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+.btn-warning:not(:disabled):not(.disabled).active, .btn-warning:not(:disabled):not(.disabled):active, .show>.btn-warning.dropdown-toggle{
+    background-color: #bf910b !important;
+    border-color: #bf910b !important;
+}
+
+.btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show>.btn-danger.dropdown-toggle{
+    background-color: #AF293B !important;
+    border-color: #AF293B !important;
+}
+
+.holderTextRed{
+    color: crimson;
+}
+
+.holderTextGreen{
+    color: darkseagreen;
+}
 

@@ -52,7 +52,7 @@
                         <br/>
                         <div class="col">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body traineeDashboardCard">
                                     <h5 class="card-title">Feedback Pending:</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Trainer feedback to be completed</h6>
                                     <p class="card-text">
@@ -66,12 +66,16 @@
                             <br/>
                         </div>
                     </div>
+                    <div class="row align-content-center">
+                        <h5 class="text-center">Feedback Report Submission Tracker</h5>
+                    </div>
                     <div class="row">
-                        <table class="table">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th th:rowspan="2">Trainee</th>
-                                <th th:colspan="${courseDuration}">Week</th>
+                                <th class="text-center" th:colspan="${courseDuration}">Week</th>
                             </tr>
                             <tr>
                                 <th th:each="i: ${courseDurationList}" th:text="${i}"></th>
@@ -80,9 +84,27 @@
                             <tbody>
                             <tr th:each="traineeCounter: ${traineeCounter}">
                                 <th scope="row" th:text="${traineeList.get(traineeCounter).getFirstName()} + ' ' + ${traineeList.get(traineeCounter).getLastName()}">Trainee Name</th>
-                                <td th:each="weekReport: ${traineeCompletedList.get(traineeCounter)}" th:text="${weekReport.getTraineeSubmittedFlag()}">y</td>
+                                <td th:each="weekReport: ${traineeCompletedList.get(traineeCounter)}" th:class="'completeState' + ${weekReport.getTraineeSubmittedFlag()}"></td>
                             </tr>
                             </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="2">Key</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td class="completeState0 holderTextRed">Holder</td>
+                                <td> Past Deadline</td>
+                            </tr>
+                            <tr>
+                                <td class="completeState1 holderTextGreen">Holder</td>
+                                <td> Submitted</td>
+                            </tr>
                         </table>
                     </div>
                 </form>

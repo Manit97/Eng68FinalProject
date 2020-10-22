@@ -99,7 +99,7 @@
             </div>
         </div>
         <p th:if="${report == null}" th:text="${'No grades yet for ' + trainee.getFirstName() + ' ' + trainee.getLastName()}"></p>
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-4" th:if="${report != null}">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary" th:text="${'Trainer Grade for Previous Week - ' + ' ' + trainee.getFirstName() + ' ' + trainee.getLastName()}"></h6>
             </div>

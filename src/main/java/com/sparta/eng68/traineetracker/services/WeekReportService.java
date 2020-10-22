@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class WeekReportService {
     private final WeekReportRepository weekReportRepository;
@@ -73,5 +75,10 @@ public class WeekReportService {
             return weekReport;
         }
         return weekReportRepository.findByWeekNumAndTraineeId(currentWeek - 1,traineeId);
+    }
+
+    public void deleteReportsByTraineeID(Integer traineeId) {
+        weekReportRepository.deleteByTraineeId(traineeId);
+
     }
 }

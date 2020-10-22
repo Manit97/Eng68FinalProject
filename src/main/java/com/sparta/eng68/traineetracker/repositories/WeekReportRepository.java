@@ -16,6 +16,6 @@ public interface WeekReportRepository extends CrudRepository<WeekReport, Integer
 
     Optional<WeekReport> findFirstByWeekNumAndTraineeId(Integer weekNum, Integer traineeId);
 
-
+    void deleteByTraineeId(Integer traineeId);
 
 }

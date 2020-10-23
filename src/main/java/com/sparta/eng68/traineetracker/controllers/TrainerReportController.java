@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -63,7 +65,9 @@ public class TrainerReportController {
         modelMap.addAttribute("reports", reports);
         modelMap.addAttribute("now", LocalDateTime.now());
 
-        return new ModelAndView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_REPORT_PAGE),modelMap);
+        RedirectView redirectView = new RedirectView(Pages.accessPage(Role.TRAINER, Pages.TRAINER_HOME_URL));
+        redirectView.setExposeModelAttributes(false);
+        return new ModelAndView(redirectView, modelMap);
     }
 
     @PostMapping("/trainer/reportTraineeWeekProcessing")
@@ -98,6 +102,7 @@ public class TrainerReportController {
 
     @GetMapping("/trainer/report/{traineeId}")
     public String getTrainerWeeklyReportsWithPath(@PathVariable Integer traineeId, Model model) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - K:mm a", Locale.ENGLISH);
         Trainee trainee = traineeService.getTraineeByID(traineeId).get();
         List<WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);
         Collections.reverse(reports);
@@ -105,6 +110,7 @@ public class TrainerReportController {
         model.addAttribute("trainee", trainee);
         model.addAttribute("reports", reports);
         model.addAttribute("now", LocalDateTime.now());
+        model.addAttribute("dateFormat", formatter);
         return Pages.accessPage(Role.TRAINER, Pages.TRAINER_REPORT_PAGE);
     }
 }

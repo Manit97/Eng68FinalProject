@@ -18,8 +18,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -98,6 +100,7 @@ public class TraineeReportController {
 
     @GetMapping("/trainee/report")
     public String getTraineeWeeklyReports(Model model, Principal principal) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - K:mm a", Locale.ENGLISH);
         Integer traineeId = traineeService.getTraineeByUsername(principal.getName()).get().getTraineeId();
         Trainee trainee = traineeService.getTraineeByID(traineeId).get();
         List<WeekReport> reports = weekReportService.getReportsByTraineeID(traineeId);
@@ -105,6 +108,7 @@ public class TraineeReportController {
         model.addAttribute("trainee", trainee);
         model.addAttribute("reports", reports);
         model.addAttribute("now", LocalDateTime.now());
+        model.addAttribute("dateFormat", formatter);
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_REPORT_PAGE);
     }
 }

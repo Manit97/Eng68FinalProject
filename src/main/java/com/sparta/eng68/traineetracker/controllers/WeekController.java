@@ -80,7 +80,7 @@ public class WeekController {
             weekReport.setTraineeId(trainee.getTraineeId());
             weekReport.setWeekNum(week_num);
             LocalDate deadlineDay =LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-            LocalDateTime deadline = deadlineDay.atTime(18, 30);
+            LocalDateTime deadline = deadlineDay.atTime(17, 30);
             weekReport.setDeadline(deadline);
 
             weekReport.setTrainerCompletedFlag((byte) 0);

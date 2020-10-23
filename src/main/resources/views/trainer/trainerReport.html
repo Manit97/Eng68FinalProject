@@ -155,7 +155,7 @@
                                                     <table style="width:100%">
                                                         <tr>
                                                             <td><strong>Deadline</strong></td>
-                                                            <td th:text="${report.getDeadline()}"></td>
+                                                            <td th:text="${report.getDeadline().format(dateFormat)}"></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -163,7 +163,7 @@
                                                     <table style="width:100%">
                                                         <tr>
                                                             <td><strong>Last Edited</strong></td>
-                                                            <td th:text="${report.getMostRecentEdit()}"></td>
+                                                            <td th:text="${report.getMostRecentEdit().format(dateFormat)}"></td>
                                                         </tr>
                                                     </table>
                                                 </div>

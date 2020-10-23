@@ -8,7 +8,7 @@ public class SecurityConfigTests {
     @Test
     void testPasswordEncoding() {
         SecurityConfig securityConfig = new SecurityConfig(null);
-        System.out.println(securityConfig.passwordEncoder().encode("c"));
+        System.out.println(securityConfig.passwordEncoder().encode("tinman"));
 
     }
 

@@ -110,7 +110,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Missed Deadlines:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Trainees who have not submitted their feedback forms</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">Trainees who have not submitted their feedback forms for the current week</h6>
                                     <p class="card-text">
                                         <ul>
                                             <li class="missedDeadline" th:each="missedDeadlineTrainee: ${missedDeadlineList}" th:text="${missedDeadlineTrainee.firstName} + ' ' + ${missedDeadlineTrainee.lastName}"></li>

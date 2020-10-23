@@ -141,7 +141,7 @@
                             </div>
                             <div class="col">
                                 <form th:action="@{/traineeRecentReport}"  method="post">
-                                    <button class="btn" type="submit" name="reportId" th:value="${report.getReportId()}" style="color: #E23561">Edit Report</button>
+                                    <button class="btn" type="submit" name="reportId" th:if="${now.isBefore(report.getDeadline())}" th:value="${report.getReportId()}" style="color: #E23561">Edit Report</button>
                                 </form>
                             </div>
                         </div>

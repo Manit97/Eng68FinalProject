@@ -52,6 +52,7 @@ public class TraineeHomeController {
         model.addAttribute("trainee", trainee);
         model.addAttribute("courseGroup",courseGroup);
         model.addAttribute("course", course);
+        model.addAttribute("now", LocalDateTime.now());
         return Pages.accessPage(Role.TRAINEE, Pages.TRAINEE_HOME_PAGE);
     }
 

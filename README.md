@@ -1,2 +1,8 @@
-# Eng68FinalProject
+# Engineering 68 Final Project - Tracker Tracker Website
+
 Final project for the Java Development stream which includes a 1-1 training tracker application.
+
+Documentation for this project
+  - Developer Documentation
+  - Trainer Guide
+  

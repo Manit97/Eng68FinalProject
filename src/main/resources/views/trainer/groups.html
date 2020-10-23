@@ -43,23 +43,24 @@
                                                             <option value=""> -- </option>
                                                             <option th:each="trainee : ${allTrainees}"
                                                                     th:value="${trainee.traineeId}"
-                                                                    th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"/>
+                                                                    th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></option>
                                                         </select>
                                                     </td>
+                                                    <td class="placeholderText">place</td>
                                                     <td>Select Class:</td>
                                                     <td>
                                                         <select th:field="*{groupId}" required>
                                                             <option value=""> -- </option>
                                                             <option th:each="group : ${allGroups}"
                                                                     th:value="${group.groupId}"
-                                                                    th:text="${group.groupName}"/>
+                                                                    th:text="${group.groupName}"></option>
                                                         </select>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <br/>
-                                        <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">Submit</button>
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                                     </form>
                                     <br/>
                                     <h1 class="h3 mb-3 font-weight-normal">Create Class</h1>
@@ -80,7 +81,7 @@
                                                         <option value=""> -- </option>
                                                         <option th:each="course : ${allCourses}"
                                                                 th:value="${course.courseId}"
-                                                                th:text="${course.courseName}"/>
+                                                                th:text="${course.courseName}"></option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -92,13 +93,9 @@
                                             </tr>
                                         </table>
                                         <br/>
-                                        <button class="btn btn-lg btn-primary btn-block greenBtn" type="submit">Submit</button>
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                                     </form>
                                 </div>
-
-                                <!--                                <div class="col-lg-6 d-none d-lg-block" style="padding-top: 25px">-->
-                                <!--                                    <img src="images/adduser2.png" style="width: 100%">-->
-                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>

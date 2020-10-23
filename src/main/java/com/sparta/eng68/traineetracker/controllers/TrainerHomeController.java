@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class TrainerHomeController {
             traineeCompletedList.add(weekReports);
             Optional<WeekReport> weekReport = weekReportService.getCurrentWeekReportByTraineeID(trainee.getTraineeId());
             if(weekReport.isPresent()){
-                if(weekReport.get().getMostRecentEdit().compareTo(weekReport.get().getDeadline()) > 0){
+                if(weekReport.get().getDeadline().isBefore(LocalDateTime.now()) && weekReport.get().getTraineeSubmittedFlag() == 0){
                     missedDeadlineList.add(trainee);
                 }
 

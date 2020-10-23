@@ -1,9 +1,8 @@
 package com.sparta.eng68.traineetracker.controllers;
 
+import com.sparta.eng68.traineetracker.entities.*;
 import com.sparta.eng68.traineetracker.utilities.NewUserForm;
-import com.sparta.eng68.traineetracker.entities.WeekReport;
 import com.sparta.eng68.traineetracker.services.*;
-import com.sparta.eng68.traineetracker.entities.Trainee;
 import com.sparta.eng68.traineetracker.utilities.Pages;
 import com.sparta.eng68.traineetracker.utilities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +69,14 @@ public class TrainerHomeController {
                 }
             }
         }
+
+        Trainer trainer = trainerService.getTrainerByUsername(principal.getName()).get();
+        CourseGroup courseGroup = courseGroupService.getGroupByID(trainer.getGroupId()).get();
+        Course course = courseService.getCourseByID(courseGroup.getCourseId()).get();
+
+        modelMap.addAttribute("trainer", trainer);
+        modelMap.addAttribute("courseGroup",courseGroup);
+        modelMap.addAttribute("course", course);
         modelMap.addAttribute("traineeList", traineeList);
         modelMap.addAttribute("missedDeadlineList", missedDeadlineList);
         modelMap.addAttribute("toCompleteList", needToCompleteList);

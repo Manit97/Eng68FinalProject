@@ -56,7 +56,7 @@
                                                                 <option value=""> -- </option>
                                                                 <option th:each="group : ${allGroups}"
                                                                         th:value="${group.groupId}"
-                                                                        th:text="${group.groupName}"/>
+                                                                        th:text="${group.groupName}"></option>
                                                                 </select>
                                                         </td>
                                                     </tr>
@@ -74,7 +74,7 @@
                                                     <option value=""> -- </option>
                                                     <option th:each="trainee : ${allTrainees}"
                                                             th:value="${trainee.traineeId}"
-                                                            th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"/>
+                                                            th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></option>
                                                 </select>
                                             </tr>
                                             <br/>

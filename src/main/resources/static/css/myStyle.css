@@ -9,30 +9,30 @@
     background-color: #fff;
 }
 .sidebar .nav-item .nav-link{
-    color: #471955 !important;
+    color: black !important;
 }
 .sidebar-dark .nav-item .nav-link i {
-    color: #3CBDEF !important;
+    color: #5EC68E !important;
 }
 
 .sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
-    color: #F100B9 !important;
+    color: #E23561 !important;
 }
 
 .sidebar-dark #sidebarToggle {
-    background-color: #98d5ea !important;
+    background-color: #4e73df !important;
 }
 
 .sidebar-dark #sidebarToggle::after {
-    color: #471955 !important;
+    color: #ffffff !important;
 }
 
 .sidebar-dark #sidebarToggle:hover {
-    background-color: #90cade !important;
+    background-color: #3858D0  !important;
 }
 
 .sidebar-dark.toggled #sidebarToggle::after {
-    color: #471955 !important;
+    color: #ffffff !important;
 }
 .bg-grey{
     background-color: #eeeeee !important;
@@ -48,7 +48,7 @@
 }
 
 .border-bottom-color {
-    border-bottom: 0.25rem solid #F100B9 !important;
+    border-bottom: 0.25rem solid #E23561 !important;
 }
 
 ul li {
@@ -91,4 +91,6 @@ ul li {
 .holderTextGreen{
     color: darkseagreen;
 }
-
+.placeholderText{
+    color: transparent;
+}

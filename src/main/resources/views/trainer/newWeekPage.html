@@ -38,29 +38,29 @@
                                         <h1 class="h4 text-gray-900 mb-4">Add Weeks to Groups</h1>
                                     </div>
                                     <form class="form-signin align-content-center text-center" th:action="@{/trainer/addNewWeek}" method="POST">
-                                        <div class="form-group" style="text-align: left">
                                             <table>
                                                 <tr>
-                                                    <td>Select Group:</td>
-                                                    <td>
-                                                        <select class="form-control" id="dropdown" name="groupId">
-                                                            <option value="0"> -- </option>
-                                                            <option th:each="group : ${allGroups}"
-                                                                    th:value="${group.groupId}"
-                                                                    th:text="${group.groupName}"/>
-                                                        </select>
-                                                    </td>
+                                                    <div class="form-group">
+                                                        <td><label for="dropdown">Select Group:</label></td>
+                                                        <td>
+                                                            <select class="form-control" id="dropdown" name="groupId">
+                                                                <option value="0"> -- </option>
+                                                                <option th:each="group : ${allGroups}"
+                                                                        th:value="${group.groupId}"
+                                                                        th:text="${group.groupName}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </div>
                                                 </tr>
                                             </table>
-                                        </div>
                                         <br/>
-                                        <button class="btn btn-lg btn-primary btn-block greenBtn" name="submit" type="submit" value="submit" >Submit</button>
+                                        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="submit" >Submit</button>
                                     </form>
                                 </div>
                                 </div>
 
-                                <div class="col-lg-6 d-none d-lg-block" style="padding-top: 5px">
-                                    <img src="images/addweeks2.png" style="width: 100%">
+                                <div class="col-lg-6 d-none d-lg-block" style="padding-top: 15px">
+                                    <img th:src="@{/images/addweeks2.png}" style="width: 90%">
                                 </div>
                             </div>
                         </div>
